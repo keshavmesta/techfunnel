@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+- '0.12'
+- '4.0'
+- '4'
+- stable
+sudo: false
+before_script:
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+script:
+- npm run lint
+- npm test
+- npm run test-node
+deploy:
+  provider: heroku
+  api_key:
+    secure: I1OahDjXTnyOOftmHCLs5Xmr/btGu6udaOIe1xdgHrccaaXyFd7CpLVJHUcyCrZmMzFI/s77tY+SYRC6WWIM3mM6++P2WvswBykERkivntJAkVQEFNcDJOJbGmJQOmfAoiGRdj4t/H/XV5OVgkxvGH0OQc6gWtDYZPc5XCorjSQ1KjHHa0EIg7EeLqhvvvg1hdkbmiXlaD4+HuihoAkX+d6wMHKXop/4ILgRpOPoc9iwU+1rNCrv+259xLo4Rg5P8wDGYCje7ek5EtmMrbanPPhQFzEhLCvP41B82eHkjeZ31DgRxaQAvIMdbOngj7HuwVaFIFt3DuFhmdf+hYeo4pkjbg6+knwWMiPpBCS3iR5idSClMCIUBr9MZ/HDLANFmMTfBHWYhrMlEH53krLlyxtfZLswzjjkF+UBwYqH4YBes3Yx0OFpyk7h5S7tze8gO+GtoQYw8Jz64wgCqylSJLhUNuzUZ2HPZgz71h8780RJ/Cc4eZVCuzxiCrBZ2XLZrYBMPJ1yrwEM5Q2aZM5o4GhzccWrvpxYfU+Xww/cPyzLlbNqC13maZjz5Cri/al6BJRMOahfCzu8VizvvWk/RNp1daKyGPZj0XT5nLbuSd2MyQNe78frjTA8EXiQKU8mLfVf1x7Ua66AGcNnsnOgF+D2jBEORzBPdT2M9sAQfds=
+  app: techfunnel
+  on:
+    repo: keshavmesta/techfunnel
