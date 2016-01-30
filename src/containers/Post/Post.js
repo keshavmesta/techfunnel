@@ -35,12 +35,6 @@ export default class Post extends Component {
         <h1>Post a Topic</h1>
         <Helmet title="Post a Topic"/>
 
-        <div style={{textAlign: 'center', margin: 15}}>
-          <button className="btn btn-primary" onClick={this.handleInitialize}>
-            <i className="fa fa-pencil"/> Initialize Form
-          </button>
-        </div>
-
         <PostForm onSubmit={this.handleSubmit}/>
       </div>
     );
