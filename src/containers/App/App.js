@@ -65,9 +65,8 @@ export default class App extends Component {
         <Navbar fixedTop>
           <Navbar.Header>
             <Navbar.Brand>
-              <IndexLink to="/" activeStyle={{color: '#186DA0'}}>
-                <div className={styles.brand}/>
-                <span>{config.app.title}</span>
+              <IndexLink to="/" activeStyle={{color: '#e56246'}}>
+                <span>Home</span>
               </IndexLink>
             </Navbar.Brand>
             <Navbar.Toggle/>
@@ -75,15 +74,11 @@ export default class App extends Component {
 
           <Navbar.Collapse eventKey={0}>
             <Nav navbar>
-              {user && <LinkContainer to="/chat">
-                <NavItem eventKey={1}>Chat</NavItem>
-              </LinkContainer>}
-
               <LinkContainer to="/topics">
-                <NavItem eventKey={2}>Browse Topics</NavItem>
+                <NavItem eventKey={1}>Browse Topics</NavItem>
               </LinkContainer>
               <LinkContainer to="/post">
-                <NavItem eventKey={3}>Post a Topic</NavItem>
+                <NavItem eventKey={2}>Post a Topic</NavItem>
               </LinkContainer>
             </Nav>
             {user &&

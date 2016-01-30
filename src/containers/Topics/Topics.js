@@ -48,7 +48,7 @@ export default class Topics extends Component {
       <div className={styles.topics + ' container'}>
         <h1>
           Topics
-          <button className={styles.refreshBtn + ' btn btn-success'} onClick={load}>
+          <button className={styles.refreshBtn + ' btn btn-primary'} onClick={load}>
             <i className={refreshClassName}/> {' '} Reload Topics
           </button>
         </h1>
