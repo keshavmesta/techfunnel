@@ -26,7 +26,7 @@ function asyncValidate(data) {
 
 @reduxForm({
   form: 'post',
-  fields: ['name', 'email', 'occupation', 'currentlyEmployed', 'sex'],
+  fields: ['title', 'description', 'name', 'oracleid', 'email', 'preferredDate', 'comments'],
   validate: postValidation,
   asyncValidate,
   asyncBlurFields: ['email']
@@ -34,28 +34,18 @@ function asyncValidate(data) {
 export default
 class PostForm extends Component {
   static propTypes = {
-    active: PropTypes.string,
     asyncValidating: PropTypes.bool.isRequired,
     fields: PropTypes.object.isRequired,
-    dirty: PropTypes.bool.isRequired,
     handleSubmit: PropTypes.func.isRequired,
-    resetForm: PropTypes.func.isRequired,
-    invalid: PropTypes.bool.isRequired,
-    pristine: PropTypes.bool.isRequired,
-    valid: PropTypes.bool.isRequired
+    resetForm: PropTypes.func.isRequired
   }
 
   render() {
     const {
       asyncValidating,
-      dirty,
-      fields: {name, email, occupation, currentlyEmployed, sex},
-      active,
+      fields: {title, description, name, oracleid, email, preferredDate, comments},
       handleSubmit,
-      invalid,
-      resetForm,
-      pristine,
-      valid
+      resetForm
       } = this.props;
     const styles = require('./PostForm.scss');
     const renderInput = (field, label, showAsyncValidating) =>
@@ -65,36 +55,39 @@ class PostForm extends Component {
           {showAsyncValidating && asyncValidating && <i className={'fa fa-cog fa-spin ' + styles.cog}/>}
           <input type="text" className="form-control" id={field.name} {...field}/>
           {field.error && field.touched && <div className="text-danger">{field.error}</div>}
-          <div className={styles.flags}>
-            {field.dirty && <span className={styles.dirty} title="Dirty">D</span>}
-            {field.active && <span className={styles.active} title="Active">A</span>}
-            {field.visited && <span className={styles.visited} title="Visited">V</span>}
-            {field.touched && <span className={styles.touched} title="Touched">T</span>}
-          </div>
+        </div>
+      </div>;
+    const renderTextarea = (field, label, rows) =>
+      <div className={'form-group' + (field.error && field.touched ? ' has-error' : '')}>
+        <label htmlFor={field.name} className="col-sm-2">{label}</label>
+        <div className={'col-sm-8 ' + styles.inputGroup}>
+          <textarea className="form-control" rows={rows} id={field.name} {...field}></textarea>
+          {field.error && field.touched && <div className="text-danger">{field.error}</div>}
         </div>
       </div>;
 
     return (
       <div>
         <form className="form-horizontal" onSubmit={handleSubmit}>
+          <p className={styles['form-sub-header']}>Topic Details:</p>
+          {renderInput(title, 'Title')}
+          {renderTextarea(description, 'Description', 10)}
+
+          <p className={styles['form-sub-header']}>Speaker Details:</p>
           {renderInput(name, 'Full Name')}
+          {renderInput(oracleid, 'Oracle ID')}
           {renderInput(email, 'Email', true)}
-          {renderInput(occupation, 'Occupation')}
+
+          <p className={styles['form-sub-header']}>We are already excited! When you shall be ready?</p>
           <div className="form-group">
-            <label htmlFor="currentlyEmployed" className="col-sm-2">Currently Employed?</label>
+            <label htmlFor="preferredDate" className="col-sm-2">Preferred Date</label>
             <div className="col-sm-8">
-              <input type="checkbox" id="currentlyEmployed" {...currentlyEmployed}/>
+              <input type="date" className="form-control" id="preferredDate" {...preferredDate}/>
             </div>
           </div>
-          <div className="form-group">
-            <label className="col-sm-2">Sex</label>
-            <div className="col-sm-8">
-              <input type="radio" id="sex-male" {...sex} value="male" checked={sex.value === 'male'}/>
-              <label htmlFor="sex-male" className={styles.radioLabel}>Male</label>
-              <input type="radio" id="sex-female" {...sex} value="female" checked={sex.value === 'female'}/>
-              <label htmlFor="sex-female" className={styles.radioLabel}>Female</label>
-            </div>
-          </div>
+
+          {renderTextarea(comments, 'Comments', 3)}
+
           <div className="form-group">
             <div className="col-sm-offset-2 col-sm-10">
               <button className="btn btn-success" onClick={handleSubmit}>
@@ -106,33 +99,6 @@ class PostForm extends Component {
             </div>
           </div>
         </form>
-
-        <h4>Props from redux-form</h4>
-
-        <table className="table table-striped">
-          <tbody>
-          <tr>
-            <th>Active Field</th>
-            <td>{active}</td>
-          </tr>
-          <tr>
-            <th>Dirty</th>
-            <td className={dirty ? 'success' : 'danger'}>{dirty ? 'true' : 'false'}</td>
-          </tr>
-          <tr>
-            <th>Pristine</th>
-            <td className={pristine ? 'success' : 'danger'}>{pristine ? 'true' : 'false'}</td>
-          </tr>
-          <tr>
-            <th>Valid</th>
-            <td className={valid ? 'success' : 'danger'}>{valid ? 'true' : 'false'}</td>
-          </tr>
-          <tr>
-            <th>Invalid</th>
-            <td className={invalid ? 'success' : 'danger'}>{invalid ? 'true' : 'false'}</td>
-          </tr>
-          </tbody>
-        </table>
       </div>
     );
   }
