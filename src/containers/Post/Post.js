@@ -35,6 +35,8 @@ export default class Post extends Component {
         <h1>Post a Topic</h1>
         <Helmet title="Post a Topic"/>
 
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pretium sit amet lacus sed ullamcorper. Proin sed nisl nec neque mattis imperdiet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lobortis ullamcorper vulputate. Nam ultricies diam in justo efficitur, dictum scelerisque libero ullamcorper.</p>
+
         <PostForm onSubmit={this.handleSubmit}/>
       </div>
     );
