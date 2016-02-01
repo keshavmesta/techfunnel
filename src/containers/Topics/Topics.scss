@@ -1,35 +1,20 @@
 .topics {
-  .refreshBtn {
-    margin-left: 20px;
-  }
-  .idCol {
+  .idcol {
     width: 5%;
   }
-  .colorCol {
-    width: 20%;
+  .datepostedcol {
+    width: 15%;
   }
-  .sprocketsCol {
-    width: 20%;
-    text-align: right;
-    input {
-      text-align: right;
-    }
-  }
-  .ownerCol {
+  .titlecol {
     width: 30%;
   }
-  .buttonCol {
-    width: 25%;
-    :global(.btn) {
-      margin: 0 5px;
-    }
+  .speakercol {
+    width: 20%;
   }
-  tr.saving {
-    opacity: 0.8;
-    :global(.btn) {
-      &[disabled] {
-        opacity: 1;
-      }
-    }
+  .talkdatecol {
+    width: 20%;
+  }
+  .showbutton{
+    width: 10%
   }
 }

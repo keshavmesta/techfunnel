@@ -11,6 +11,7 @@ import {
     LoginSuccess,
     Post,
     NotFound,
+    Talk
   } from 'containers';
 
 export default (store) => {
@@ -50,6 +51,7 @@ export default (store) => {
       <Route path="login" component={Login}/>
       <Route path="post" component={Post}/>
       <Route path="topics" component={Topics}/>
+      <Route path="topics/:topicid" component={Talk}/>
 
       { /* Catch all route */ }
       <Route path="*" component={NotFound} status={404} />

@@ -7,3 +7,4 @@ export Login from './Login/Login';
 export LoginSuccess from './LoginSuccess/LoginSuccess';
 export Post from './Post/Post';
 export NotFound from './NotFound/NotFound';
+export Talk from './Talk/Talk';
