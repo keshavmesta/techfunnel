@@ -73,7 +73,7 @@ export default class Topics extends Component {
           {
             topics.map((topic) =>
               <tr key={topic._id}>
-                <td className={styles.titlecol}><Link to={`/topics/${topic._id}`}>{topic.title}</Link></td>
+                <td className={styles.titlecol}><Link to={`/topic/${topic._id}`}>{topic.title}</Link></td>
                 <td className={styles.speakercol}>{topic.speakerName}</td>
                 <td className={styles.datepostedcol}>{topic.datePosted}</td>
                 <td className={styles.talkdatecol}>{topic.dateScheduled}</td>

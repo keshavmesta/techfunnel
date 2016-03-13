@@ -17,7 +17,7 @@ function fetchDataDeferred(getState, dispatch) {
     topics: state.topics.data
   }),
   {...topicActions })
-export default class Talk extends Component {
+export default class Topic extends Component {
   static propTypes = {
     topics: PropTypes.array,
     params: PropTypes.object
@@ -26,9 +26,9 @@ export default class Talk extends Component {
   render() {
     const {topics} = this.props;
     // let refreshClassName = 'fa fa-refresh';
-    const styles = require('./Talk.scss');
+    const styles = require('./Topic.scss');
     return (
-      <div className={styles.talk + ' container'}>
+      <div className={styles.topic + ' container'}>
         <h1>
           {this.props.params.topicid}
         </h1>
@@ -42,7 +42,7 @@ export default class Talk extends Component {
               <h2 className={styles.title}>{topic.title}</h2>
               <h4 className={styles.speaker}>{topic.speakerName}</h4>
               <p className={styles.description}>{topic.description}</p>
-              <div className={styles.talkDate}>{topic.dateScheduled}</div>
+              <div className={styles.dateScheduled}>{topic.dateScheduled}</div>
               <div className={styles.speakerEmail}>{topic.speakerEmail}</div>
             </div>)}
       </div>
