@@ -29,21 +29,16 @@ export default class Topic extends Component {
     const styles = require('./Topic.scss');
     return (
       <div className={styles.topic + ' container'}>
-        <h1>
-          {this.props.params.topicid}
-        </h1>
-        <Helmet title={this.props.params.topicid}/>
         {topics && topics.length &&
           topics.map((topic) => topic._id !== this.props.params.topicid ?
             <div key={topic._id}></div> :
           <div key={topic._id}>
-              <div className={styles.idCol}>{topic._id}</div>
-              <div className={styles.datePosted}>{topic.datePosted}</div>
-              <h2 className={styles.title}>{topic.title}</h2>
-              <h4 className={styles.speaker}>{topic.speakerName}</h4>
+              <h1>{topic.title}</h1>
+              <Helmet title={topic.title}/>
+              <div className={styles.dateScheduled}>Scheduled to go live on: {topic.dateScheduled}</div>
               <p className={styles.description}>{topic.description}</p>
-              <div className={styles.dateScheduled}>{topic.dateScheduled}</div>
-              <div className={styles.speakerEmail}>{topic.speakerEmail}</div>
+              <div className={styles.speaker}>Posted by: <a href={'mailto:' + topic.speakerEmail}>{topic.speakerName}</a></div>
+              <div className={styles.datePosted}>Posted on: {topic.datePosted}</div>
             </div>)}
       </div>
     );
