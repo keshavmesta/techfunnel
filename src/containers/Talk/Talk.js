@@ -34,15 +34,15 @@ export default class Talk extends Component {
         </h1>
         <Helmet title={this.props.params.topicid}/>
         {topics && topics.length &&
-          topics.map((topic) => topic.speaker !== this.props.params.topicid ?
-            <div key={topic.id}></div> :
-          <div key={topic.id}>
-              <div className={styles.idCol}>{topic.id}</div>
+          topics.map((topic) => topic._id !== this.props.params.topicid ?
+            <div key={topic._id}></div> :
+          <div key={topic._id}>
+              <div className={styles.idCol}>{topic._id}</div>
               <div className={styles.datePosted}>{topic.datePosted}</div>
               <h2 className={styles.title}>{topic.title}</h2>
-              <h4 className={styles.speaker}>{topic.speaker}</h4>
+              <h4 className={styles.speaker}>{topic.speakerName}</h4>
               <p className={styles.description}>{topic.description}</p>
-              <div className={styles.talkDate}>{topic.talkDate}</div>
+              <div className={styles.talkDate}>{topic.dateScheduled}</div>
               <div className={styles.speakerEmail}>{topic.speakerEmail}</div>
             </div>)}
       </div>

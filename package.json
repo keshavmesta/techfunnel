@@ -2,8 +2,8 @@
   "name": "techfunnel",
   "description": "Platform to share your ideas for Tech Friday",
   "authors": [
-  	"Keshav Mesta <kmesta@sapient.com>",
-  	"Shafeeq Ur Rahman <srahman2@sapient.com>"
+    "Keshav Mesta <kmesta@sapient.com>",
+    "Shafeeq Ur Rahman <srahman2@sapient.com>"
   ],
   "license": "MIT",
   "version": "0.9.0",
@@ -90,8 +90,8 @@
     "compression": "^1.6.0",
     "express": "^4.13.3",
     "express-session": "^1.12.1",
-    "history": "1.17.0",
     "file-loader": "^0.8.5",
+    "history": "1.17.0",
     "hoist-non-react-statics": "^1.0.3",
     "http-proxy": "^1.12.0",
     "invariant": "^2.2.0",
@@ -99,6 +99,7 @@
     "less-loader": "^2.2.1",
     "lru-memoize": "^1.0.0",
     "map-props": "^1.0.0",
+    "mongoose": "^4.4.6",
     "multireducer": "^1.0.2",
     "piping": "^0.3.0",
     "pretty-error": "^1.2.0",

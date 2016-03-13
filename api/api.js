@@ -7,6 +7,14 @@ import {mapUrl} from 'utils/url.js';
 import PrettyError from 'pretty-error';
 import http from 'http';
 import SocketIo from 'socket.io';
+import mongoose from 'mongoose';
+import TopicSeed from './actions/topic/resource/TopicSeed';
+
+const mongo_url = process.env.MONGO_URI ||
+process.env.MONGOHQ_URL ||
+process.env.MONGOLAB_URI ||
+process.env.MONGOSOUP_URL ||
+'mongodb://localhost/TechFunnel';
 
 const pretty = new PrettyError();
 const app = express();
@@ -88,4 +96,11 @@ if (config.apiPort) {
   io.listen(runnable);
 } else {
   console.error('==>     ERROR: No PORT environment variable has been specified');
+}
+
+mongoose.connect(mongo_url);
+
+if(config.useSeed === true) {
+  TopicSeed();
+  config.useSeed = false;
 }

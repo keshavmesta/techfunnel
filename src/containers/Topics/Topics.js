@@ -63,25 +63,20 @@ export default class Topics extends Component {
         <table className="table table-striped">
           <thead>
           <tr>
-            <th className={styles.idcol}>ID</th>
-            <th className={styles.datepostedcol}>Date Posted</th>
-            <th className={styles.titlecol}>Title</th>
-            <th className={styles.speakercol}>Speaker</th>
-            <th className={styles.talkdatecol}>Talk Date</th>
+            <th className={styles.idcol}>Title</th>
+            <th className={styles.speakercol}>Posted By</th>
+            <th className={styles.speakercol}>Posted On</th>
+            <th className={styles.talkdatecol}>Scheduled On</th>
           </tr>
           </thead>
           <tbody>
           {
             topics.map((topic) =>
-              <tr key={topic.id}>
-                <td className={styles.idcol}>{topic.id}</td>
+              <tr key={topic._id}>
+                <td className={styles.titlecol}><Link to={`/topics/${topic._id}`}>{topic.title}</Link></td>
+                <td className={styles.speakercol}>{topic.speakerName}</td>
                 <td className={styles.datepostedcol}>{topic.datePosted}</td>
-                <td className={styles.titlecol}>{topic.title}</td>
-                <td className={styles.speakercol}>{topic.speaker}</td>
-                <td className={styles.talkdatecol}>{topic.talkDate}</td>
-                <td className={styles.showbuttom}>
-                  <button><Link to={`/topics/${topic.speaker}`}>Show Description</Link></button>
-                </td>
+                <td className={styles.talkdatecol}>{topic.dateScheduled}</td>
               </tr>)
           }
           </tbody>

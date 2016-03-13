@@ -1,0 +1,13 @@
+import { TopicModel } from './TopicModel';
+
+export default function seed() {
+  TopicModel.find({}).remove(function(){
+    TopicModel.create([
+      {title: 'Javascript Memory Management', description: 'Most of memory management issues come at this phase. The hardest task here is to find when the allocated memory is not needed any longer. It often requires for the developer to determine where in the program such piece of memory is not needed anymore and free it.', speakerName: 'Keshav Mesta', speakerId: '106236', speakerEmail: 'kmesta@sapient.com', datePosted: Date.now('2016-01-20'), dateScheduled: Date.now('2016-02-05'), comments: 'Random', status: 1},
+      {title: 'Webpack Bundling', description: 'Most of memory management issues come at this phase. The hardest task here is to find when the allocated memory is not needed any longer. It often requires for the developer to determine where in the program such piece of memory is not needed anymore and free it.', speakerName: 'Vidhya Vijai Anand', speakerId: '106236', speakerEmail: 'vanand7@sapient.com', datePosted: Date.now('2016-02-20'), dateScheduled: Date.now('2016-03-05'), comments: 'Random', status: 1},
+      {title: 'SASS 3.3', description: 'Most of memory management issues come at this phase. The hardest task here is to find when the allocated memory is not needed any longer. It often requires for the developer to determine where in the program such piece of memory is not needed anymore and free it.', speakerName: 'Onkar Bulbule', speakerId: '106236', speakerEmail: 'obulbul@sapient.com', datePosted: Date.now('2016-01-20'), dateScheduled: Date.now('2016-02-05'), comments: 'Random', status: 1},
+      {title: 'jQuery Architecture', description: 'Most of memory management issues come at this phase. The hardest task here is to find when the allocated memory is not needed any longer. It often requires for the developer to determine where in the program such piece of memory is not needed anymore and free it.', speakerName: 'Subhasree Murugan', speakerId: '106236', speakerEmail: 'smurugan@sapient.com', datePosted: Date.now('2016-01-20'), dateScheduled: Date.now('2016-02-05'), comments: 'Random', status: 1},
+      {title: 'React Dev Tools', description: 'Most of memory management issues come at this phase. The hardest task here is to find when the allocated memory is not needed any longer. It often requires for the developer to determine where in the program such piece of memory is not needed anymore and free it.', speakerName: 'Siddhrath Taneja', speakerId: '106236', speakerEmail: 'staneja@sapient.com', datePosted: Date.now('2016-01-20'), dateScheduled: Date.now('2016-02-05'), comments: 'Random', status: 1}
+    ]);
+  });
+}
