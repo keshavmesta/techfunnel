@@ -6,22 +6,22 @@ This guide covers your first look and can be used even before installing softwar
 
 This project is a kit for developing interactive applications in JavaScript centered
 around React and Redux.  Like all JavaScript kits, it includes a large number of configured
-modules and a sample, or Demo App, from which to start your application.  This guide walks 
+modules and a sample, or Demo App, from which to start your application.  This guide walks
 through that Demo App to show some features and code.
 
 ### Open the demo in your browser
 
-The project hosts a running demo on Heroku, a hosting company.  Open 
+The project hosts a running demo on Heroku, a hosting company.  Open
 [https://react-redux.herokuapp.com/](https://react-redux.herokuapp.com/) in your browser to see this page:
 
 ![Screenshot](frontpage.png)
 
-Much of the text is cut-and-paste from the project's 
-[README.md](https://github.com/keshavmesta/techfunnel/blob/master/README.md) file into 
+Much of the text is cut-and-paste from the project's
+[README.md](https://github.com/keshavmesta/techfunnel/blob/master/README.md) file into
 the code for this page [./src/containers/Home/Home.js](https://github.com/keshavmesta/techfunnel/blob/master/src/containers/Home/Home.js).  
 
-The text provides a one line overview of about twenty of the main 
-modules of hundreds shown during installation.   The selection 
+The text provides a one line overview of about twenty of the main
+modules of hundreds shown during installation.   The selection
 and configuration of all these modules is the value of using a kit.   When you run across
 a module you have never heard of and want to get a quick overview, the fastest way is
 to google for 'slideshare theModuleName' and skim someone's presentation.
@@ -40,11 +40,11 @@ in the form.  Notice how much state affects the display and formatting of button
 
 ### Explore the Post Page
 
-Click on the *Post* link.  Following the programming style of this kit, the code for this page is 
-spread over a [Post container][scont], a [PostForm component][scomp], mentioned in the 
-[container][conlist] and [component][complist] lists, 
+Click on the *Post* link.  Following the programming style of this kit, the code for this page is
+spread over a [Post container][scont], a [PostForm component][scomp], mentioned in the
+[container][conlist] and [component][complist] lists,
 mentioned in the [routes][routes] function and the navigation of the main [App][app].  The code also uses
-various libraries for React, Redux, validation, memoize and other functions.   Learn to use [ack](http://beyondgrep.com) 
+various libraries for React, Redux, validation, memoize and other functions.   Learn to use [ack](http://beyondgrep.com)
 or the project wide search built into your editor.
 
 Try clicking on the 'Initialize Form' button and then hitting Submit.  You will see just an error under
@@ -61,9 +61,9 @@ the name and the email.  Even with a good kit, forms can be difficult to code.
 
 ### Explore the About Page
 
-Click on the *About* link.   The source for this page 
+Click on the *About* link.   The source for this page
 [./src/containers/About/About.js](https://github.com/keshavmesta/techfunnel/blob/master/src/containers/About/About.js)
-uses a casual mix of HTML, ECMA7 JavaScript, and React components.   This translates into 
+uses a casual mix of HTML, ECMA7 JavaScript, and React components.   This translates into
 simple JavaScript code for the browser.   Notice how the local state `showKitten` being false causes no
 `div` or `img` tag in the output.
 
@@ -71,15 +71,15 @@ simple JavaScript code for the browser.   Notice how the local state `showKitten
 
 ### Explore the Login Page
 
-Finally, click on the *Login* page and explore.   Looking at the styling for this page 
+Finally, click on the *Login* page and explore.   Looking at the styling for this page
 [./src/containers/Login/Login.scss]](https://github.com/keshavmesta/techfunnel/blob/master/src/containers/Login/Login.scss)
 will show an example of how the using styling files litters the code base with extra files.   
-Consider the alternative of using 
+Consider the alternative of using
 [Inline Styles](https://github.com/keshavmesta/techfunnel/blob/master/docs/InlineStyles.md).
 
 # The Take Away
 
-Looking through each page of the DemoApp will lead you to more questions which will keep you 
+Looking through each page of the DemoApp will lead you to more questions which will keep you
 searching and learning and you will slowly master this technology.
 
 Here are some additional quests you could undertake:
@@ -88,11 +88,9 @@ Here are some additional quests you could undertake:
 * How would you add a fourth counter that incremented by two?   How many files would you need
   to touch?
 * What order are calls made when you click "Reload Topics" on the topics page?
-* Why does postValidation use memoize?
+* Why does formValidation use memoize?
 
 Install, hack, explore!
 
 *All guides are works in progress, and pull requests are always welcome.  If you make an
 accepted pull request and live in Silicon Valley, I'll treat you to coffee.  -- Charles*
-
-

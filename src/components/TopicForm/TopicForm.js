@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {reduxForm} from 'redux-form';
-import postValidation from './postValidation';
+import formValidation from './formValidation';
 
 function asyncValidate(data) {
   // TODO: figure out a way to move this to the server. need an instance of ApiClient
@@ -27,12 +27,12 @@ function asyncValidate(data) {
 @reduxForm({
   form: 'post',
   fields: ['title', 'description', 'name', 'oracleid', 'email', 'preferredDate', 'comments'],
-  validate: postValidation,
+  validate: formValidation,
   asyncValidate,
   asyncBlurFields: ['email']
 })
 export default
-class PostForm extends Component {
+class TopicForm extends Component {
   static propTypes = {
     asyncValidating: PropTypes.bool.isRequired,
     fields: PropTypes.object.isRequired,
@@ -47,7 +47,7 @@ class PostForm extends Component {
       handleSubmit,
       resetForm
       } = this.props;
-    const styles = require('./PostForm.scss');
+    const styles = require('./TopicForm.scss');
     const renderInput = (field, label, showAsyncValidating) =>
       <div className={'form-group' + (field.error && field.touched ? ' has-error' : '')}>
         <label htmlFor={field.name} className="col-sm-2">{label}</label>
@@ -103,4 +103,3 @@ class PostForm extends Component {
     );
   }
 }
-

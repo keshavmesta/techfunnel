@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
 import {initialize} from 'redux-form';
-import {PostForm} from 'components';
+import {TopicForm} from 'components';
 
 @connect(
   () => ({}),
@@ -37,7 +37,7 @@ export default class Post extends Component {
 
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pretium sit amet lacus sed ullamcorper. Proin sed nisl nec neque mattis imperdiet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lobortis ullamcorper vulputate. Nam ultricies diam in justo efficitur, dictum scelerisque libero ullamcorper.</p>
 
-        <PostForm onSubmit={this.handleSubmit}/>
+        <TopicForm onSubmit={this.handleSubmit}/>
       </div>
     );
   }
