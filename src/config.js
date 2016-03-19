@@ -17,11 +17,11 @@ module.exports = Object.assign({
   useSeed: true,
   app: {
     title: 'Tech Funnel',
-    description: 'Platform to share your ideas for Tech Friday.',
+    description: 'Platform to share the Topics for Studio Events',
     head: {
       titleTemplate: '%s | Tech Funnel',
       meta: [
-        {name: 'description', content: 'Platform to share your ideas for Tech Friday.'},
+        {name: 'description', content: 'Platform to share the Topics for Studio Events'},
         {charset: 'utf-8'},
         {property: 'og:site_name', content: 'Tech Funnel'},
         {property: 'og:image', content: 'https://techfunnel.herokuapp.com/logo.jpg'},

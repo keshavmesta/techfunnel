@@ -95,10 +95,7 @@ export default class App extends Component {
         </div>
 
         <div className="well text-center">
-          Have questions? Ask for help <a
-          href="https://github.com/keshavmesta/techfunnel/issues"
-          target="_blank">on Github</a> or in the <a
-          href="https://discord.gg/0ZcbPKXt5bZZb1Ko" target="_blank">#react-redux-universal</a> Discord channel.
+          © 2016 Sapient Consulting Ltd
         </div>
       </div>
     );
