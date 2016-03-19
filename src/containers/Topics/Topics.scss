@@ -1,20 +1,10 @@
 .topics {
-  .idcol {
-    width: 5%;
+  .title, .postedBy {
+    width: 20%;
+    padding: 15px 10px;
   }
-  .datepostedcol {
+  .event, .postedOn, .scheduledOn, .location,  {
     width: 15%;
-  }
-  .titlecol {
-    width: 30%;
-  }
-  .speakercol {
-    width: 20%;
-  }
-  .talkdatecol {
-    width: 20%;
-  }
-  .showbutton{
-    width: 10%
+    padding: 15px 10px;
   }
 }

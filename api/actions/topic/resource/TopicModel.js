@@ -6,8 +6,10 @@ const TopicSchema = new mongoose.Schema({
   speakerName: String,
   speakerId: Number,
   speakerEmail: String,
+  event: String,
+  location: String,
   datePosted: Date,
-  dateScheduled: Date,
+  dateScheduled: String,
   comments: String,
   status: Number
 });
