@@ -26,7 +26,7 @@ function asyncValidate(data) {
 
 @reduxForm({
   form: 'post',
-  fields: ['title', 'description', 'name', 'oracleid', 'email', 'preferredDate', 'comments'],
+  fields: ['title', 'description', 'speakerName', 'speakerId', 'speakerEmail', 'dateScheduled', 'event', 'location', 'comments'],
   validate: formValidation,
   asyncValidate,
   asyncBlurFields: ['email']
@@ -43,7 +43,7 @@ class TopicForm extends Component {
   render() {
     const {
       asyncValidating,
-      fields: {title, description, name, oracleid, email, preferredDate, comments},
+      fields: {title, description, speakerName, speakerId, speakerEmail, dateScheduled, event, location, comments},
       handleSubmit,
       resetForm
       } = this.props;
@@ -74,15 +74,39 @@ class TopicForm extends Component {
           {renderTextarea(description, 'Description', 10)}
 
           <p className={styles['form-sub-header']}>Speaker Details:</p>
-          {renderInput(name, 'Full Name')}
-          {renderInput(oracleid, 'Oracle ID')}
-          {renderInput(email, 'Email', true)}
+          {renderInput(speakerName, 'Full Name')}
+          {renderInput(speakerId, 'Oracle ID')}
+          {renderInput(speakerEmail, 'Email', true)}
 
           <p className={styles['form-sub-header']}>We are already excited! When you shall be ready?</p>
           <div className="form-group">
-            <label htmlFor="preferredDate" className="col-sm-2">Preferred Date</label>
+            <label htmlFor="dateScheduled" className="col-sm-2">Preferred Date</label>
             <div className="col-sm-8">
-              <input type="date" className="form-control" id="preferredDate" {...preferredDate}/>
+              <input type="date" className="form-control" id="dateScheduled" {...dateScheduled}/>
+            </div>
+          </div>
+
+          <p className={styles['form-sub-header']}>Where do you wanna present it?</p>
+          <div className={'form-group' + (event.error && event.touched ? ' has-error' : '')}>
+            <label className="col-sm-2">Event</label>
+            <div className="col-sm-8">
+              <input type="radio" id="event-techfriday" {...event} value="Tech Friday" checked={event.value === 'Tech Friday'}/>
+              <label htmlFor="event-techfriday" className={styles.radioLabel}>Tech Friday</label>
+              <input type="radio" id="event-xtsummit" {...event} value="XT Summit" checked={event.value === 'XT Summit'}/>
+              <label htmlFor="event-xtsummit" className={styles.radioLabel}>XT Summit</label>
+              {event.error && event.touched && <div className="text-danger">{event.error}</div>}
+            </div>
+          </div>
+          <div className={'form-group' + (location.error && location.touched ? ' has-error' : '')}>
+            <label htmlFor="location" className="col-sm-2">Location</label>
+            <div className="col-sm-8">
+              <select id="location" className="form-control" {...location}>
+                <option selected>Select location</option>
+                <option>Bangalore</option>
+                <option>Gurgaon</option>
+                <option>Noida</option>
+              </select>
+              {location.error && location.touched && <div className="text-danger">{location.error}</div>}
             </div>
           </div>
 

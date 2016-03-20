@@ -34,6 +34,11 @@
 .radioLabel {
   margin: 0 25px 0 5px;
 }
+.has-error {
+  .radioLabel {
+    color: #a94442;
+  }
+}
 .cog {
   position: absolute;
   left: 0;

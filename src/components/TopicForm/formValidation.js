@@ -4,8 +4,10 @@ import {createValidator, required, maxLength, email, integer} from 'utils/valida
 const postValidation = createValidator({
   title: [required, maxLength(100)],
   description: [required, maxLength(1000)],
-  name: [required, maxLength(50)],
-  email: [required, email],
-  oracleid: [required, integer, maxLength(20)]
+  speakerName: [required, maxLength(50)],
+  speakerEmail: [required, email],
+  speakerId: [required, integer, maxLength(20)],
+  event: [required],
+  location: [required]
 });
 export default memoize(10)(postValidation);

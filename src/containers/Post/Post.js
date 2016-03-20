@@ -3,30 +3,24 @@ import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
 import {initialize} from 'redux-form';
 import {TopicForm} from 'components';
+import * as topicActions from 'redux/modules/topics';
 
 @connect(
-  () => ({}),
-  {initialize})
+  state => ({
+    saveError: state.topics.saveError,
+  }),
+  {...topicActions, initialize})
+
 export default class Post extends Component {
   static propTypes = {
-    initialize: PropTypes.func.isRequired
+    initialize: PropTypes.func.isRequired,
+    save: PropTypes.func.isRequired
   }
 
   handleSubmit = (data) => {
-    window.alert('Data submitted! ' + JSON.stringify(data));
-    this.props.initialize('post', {});
-  }
-
-  handleInitialize = () => {
-    this.props.initialize('post', {
-      title: 'Default title',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      name: 'Little Bobby Tables',
-      oracleid: 'Redux Wizard',
-      email: 'bobby@gmail.com',
-      comments: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      preferredDate: '2016-02-29'
-    });
+    // window.alert('Data submitted! ' + JSON.stringify(data));
+    this.props.save(data);
+    // this.props.initialize('post', {});
   }
 
   render() {
