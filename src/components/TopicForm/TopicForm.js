@@ -101,7 +101,7 @@ class TopicForm extends Component {
             <label htmlFor="location" className="col-sm-2">Location</label>
             <div className="col-sm-8">
               <select id="location" className="form-control" {...location}>
-                <option selected>Select location</option>
+                <option defaultValue>Select location</option>
                 <option>Bangalore</option>
                 <option>Gurgaon</option>
                 <option>Noida</option>
