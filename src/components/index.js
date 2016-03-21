@@ -5,7 +5,5 @@
  *
  */
 
-export CounterButton from './CounterButton/CounterButton';
 export InfoBar from './InfoBar/InfoBar';
-export MiniInfoBar from './MiniInfoBar/MiniInfoBar';
 export TopicForm from './TopicForm/TopicForm';
