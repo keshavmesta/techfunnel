@@ -29,14 +29,18 @@ export default class Login extends Component {
         <h1>Login</h1>
         {!user &&
         <div>
-          <form className="login-form form-inline" onSubmit={this.handleSubmit}>
+          <form className="login-form" onSubmit={this.handleSubmit}>
             <div className="form-group">
-              <input type="text" ref="username" placeholder="Enter a username" className="form-control"/>
+              <input type="text" ref="username" placeholder="NT ID" className="form-control"/>
             </div>
-            <button className="btn btn-success" onClick={this.handleSubmit}><i className="fa fa-sign-in"/>{' '}Log In
-            </button>
+            <div className="form-group">
+              <input type="password" ref="password" placeholder="Password" className="form-control"/>
+            </div>
+            <div className="form-group">
+              <button className="btn btn-primary" onClick={this.handleSubmit}><i className="fa fa-sign-in"/>{' '}Log In
+              </button>
+            </div>
           </form>
-          <p>This will "log you in" as this user, storing the username in the session of the API server.</p>
         </div>
         }
         {user &&
