@@ -35,10 +35,10 @@ export default class Topic extends Component {
           <div key={topic._id}>
               <h1>{topic.title}</h1>
               <Helmet title={topic.title}/>
-              <div className={styles.dateScheduled}>Scheduled to go live on: {topic.dateScheduled}</div>
+              <p className={styles.otherDetails}>by <a href={'mailto:' + topic.speakerEmail}>{topic.speakerName}</a> on {topic.dateScheduled} in {topic.event}</p>
               <p className={styles.description}>{topic.description}</p>
-              <div className={styles.speaker}>Posted by: <a href={'mailto:' + topic.speakerEmail}>{topic.speakerName}</a></div>
-              <div className={styles.datePosted}>Posted on: {topic.datePosted}</div>
+              <p className={styles.datePosted}>Posted on {new Date(topic.datePosted).getFullYear() + '-' + (new Date(topic.datePosted).getMonth() + 1) + '-' + new Date(topic.datePosted).getDate()}</p>
+              <p className={styles.upVotes}><a href="#">Upvote | {topic.upVotes}</a></p>
             </div>)}
       </div>
     );

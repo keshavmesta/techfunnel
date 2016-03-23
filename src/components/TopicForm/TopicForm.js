@@ -117,7 +117,7 @@ class TopicForm extends Component {
               <button className="btn btn-primary" onClick={handleSubmit}>
                 <i className="fa fa-paper-plane"/> Submit
               </button>
-              <button className="btn btn-warning" onClick={resetForm} style={{marginLeft: 15}}>
+              <button className="btn btn-default" onClick={resetForm} style={{marginLeft: 15}}>
                 <i className="fa fa-undo"/> Reset
               </button>
             </div>

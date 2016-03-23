@@ -48,15 +48,15 @@ export default class Topics extends Component {
           {error}
         </div>}
         {topics && topics.length &&
-        <table className="table table-striped">
+        <table className="table">
           <thead>
           <tr>
             <th className={styles.title}>Title</th>
-            <th className={styles.postedBy}>Posted By</th>
             <th className={styles.event}>Event</th>
-            <th className={styles.postedOn}>Posted On</th>
-            <th className={styles.scheduledOn}>Scheduled On</th>
             <th className={styles.location}>Location</th>
+            <th className={styles.scheduledOn}>Scheduled On</th>
+            <th className={styles.postedBy}>Posted By</th>
+            <th className={styles.upVotes}> Upvotes</th>
           </tr>
           </thead>
           <tbody>
@@ -64,16 +64,16 @@ export default class Topics extends Component {
             topics.map((topic) =>
               <tr key={topic._id}>
                 <td className={styles.title}><Link to={`/topic/${topic._id}`}>{topic.title}</Link></td>
-                <td className={styles.postedBy}>{topic.speakerName}</td>
                 <td className={styles.event}>{topic.event}</td>
-                <td className={styles.postedOn}>{new Date(topic.datePosted).getFullYear() + '-' + (new Date(topic.datePosted).getMonth() + 1) + '-' + new Date(topic.datePosted).getDate()}</td>
-                <td className={styles.scheduledOn}>{topic.dateScheduled}</td>
                 <td className={styles.location}>{topic.location}</td>
+                <td className={styles.scheduledOn}>{topic.dateScheduled}</td>
+                <td className={styles.postedBy}>{topic.speakerName}</td>
+                <td className={styles.upVotes}><a href="#">Upvote | {topic.upVotes}</a></td>
               </tr>)
           }
           </tbody>
         </table>}
-        <button className={styles.refreshBtn + ' btn btn-success'} onClick={load}>
+        <button className={styles.refreshBtn + ' btn btn-primary'} onClick={load}>
           <i className={refreshClassName}/> {' '} Reload Topics
         </button>
       </div>
