@@ -19,13 +19,14 @@ function fetchDataDeferred(getState, dispatch) {
     error: state.topics.error,
     loading: state.topics.loading
   }),
-  {...topicActions})
+  {...topicActions })
 export default class Topics extends Component {
   static propTypes = {
     topics: PropTypes.array,
     error: PropTypes.string,
     loading: PropTypes.bool,
     load: PropTypes.func.isRequired,
+    params: PropTypes.object,
     saveUpvote: PropTypes.func.isRequired
   }
 
@@ -34,6 +35,9 @@ export default class Topics extends Component {
       const {saveUpvote} = this.props;
       return () => saveUpvote(topic);
     };
+    const selection = this.props.params.selection.split('-');
+    const eventName = selection[0];
+    const locationName = selection[1];
     const {topics, error, loading, load} = this.props;
     let refreshClassName = 'fa fa-refresh';
     if (loading) {
@@ -67,8 +71,9 @@ export default class Topics extends Component {
           <tbody>
           {
             topics.map((topic) =>
+            topic.location === locationName && topic.event === eventName ?
               <tr key={topic._id}>
-                <td className={styles.title}><Link to={`/topic/${topic._id}`}>{topic.title}</Link></td>
+                <td className={styles.title}><Link to={`/topic/${this.props.params.selection}/${topic._id}`}>{topic.title}</Link></td>
                 <td className={styles.event}>{topic.event}</td>
                 <td className={styles.location}>{topic.location}</td>
                 <td className={styles.scheduledOn}>{topic.dateScheduled}</td>
@@ -78,7 +83,7 @@ export default class Topics extends Component {
                     <i className="fa fa-thumbs-o-up"/> {topic.upVotes}
                   </button>
                 </td>
-              </tr>)
+              </tr> : null)
           }
           </tbody>
         </table>}
