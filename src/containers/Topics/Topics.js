@@ -25,10 +25,14 @@ export default class Topics extends Component {
     topics: PropTypes.array,
     error: PropTypes.string,
     loading: PropTypes.bool,
-    load: PropTypes.func.isRequired
+    load: PropTypes.func.isRequired,
+    params: PropTypes.object
   }
 
   render() {
+    const selection = this.props.params.selection.split('-');
+    const eventName = selection[0];
+    const locationName = selection[1];
     const {topics, error, loading, load} = this.props;
     let refreshClassName = 'fa fa-refresh';
     if (loading) {
@@ -62,14 +66,15 @@ export default class Topics extends Component {
           <tbody>
           {
             topics.map((topic) =>
+            topic.location === locationName && topic.event === eventName ?
               <tr key={topic._id}>
-                <td className={styles.title}><Link to={`/topic/${topic._id}`}>{topic.title}</Link></td>
+                <td className={styles.title}><Link to={`/topic/${this.props.params.selection}/${topic._id}`}>{topic.title}</Link></td>
                 <td className={styles.event}>{topic.event}</td>
                 <td className={styles.location}>{topic.location}</td>
                 <td className={styles.scheduledOn}>{topic.dateScheduled}</td>
                 <td className={styles.postedBy}>{topic.speakerName}</td>
                 <td className={styles.upVotes}><a href="#">Upvote | {topic.upVotes}</a></td>
-              </tr>)
+              </tr> : null)
           }
           </tbody>
         </table>}
