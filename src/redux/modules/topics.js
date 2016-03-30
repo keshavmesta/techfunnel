@@ -4,10 +4,14 @@ const LOAD_FAIL = 'redux-example/topics/LOAD_FAIL';
 const SAVE = 'redux-example/topics/SAVE';
 const SAVE_SUCCESS = 'redux-example/topics/SAVE_SUCCESS';
 const SAVE_FAIL = 'redux-example/topics/SAVE_FAIL';
+const UPVOTE = 'redux-example/topics/UPVOTE';
+const UPVOTE_SUCCESS = 'redux-example/topics/UPVOTE_SUCCESS';
+const UPVOTE_FAIL = 'redux-example/topics/UPVOTE_FAIL';
 
 const initialState = {
   loaded: false,
-  saveError: {}
+  saveError: {},
+  upvoteError: {}
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -58,6 +62,24 @@ export default function reducer(state = initialState, action = {}) {
           [action.id]: action.error
         }
       } : state;
+    case UPVOTE:
+      return state;
+    case UPVOTE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        loaded: true,
+        data: action.result,
+        error: null
+      };
+    case UPVOTE_FAIL:
+      return typeof action.error === 'string' ? {
+        ...state,
+        upvoteError: {
+          ...state.upvoteError,
+          [action.id]: action.error
+        }
+      } : state;
     default:
       return state;
   }
@@ -77,8 +99,18 @@ export function load() {
 export function save(topic) {
   return {
     types: [SAVE, SAVE_SUCCESS, SAVE_FAIL],
-    id: topic.id,
+    id: topic._id,
     promise: (client) => client.post('/topic/update', {
+      data: topic
+    })
+  };
+}
+
+export function saveUpvote(topic) {
+  return {
+    types: [UPVOTE, UPVOTE_SUCCESS, UPVOTE_FAIL],
+    id: topic._id,
+    promise: (client) => client.post('/topic/upvote', {
       data: topic
     })
   };

@@ -19,16 +19,21 @@ function fetchDataDeferred(getState, dispatch) {
     error: state.topics.error,
     loading: state.topics.loading
   }),
-  {...topicActions })
+  {...topicActions})
 export default class Topics extends Component {
   static propTypes = {
     topics: PropTypes.array,
     error: PropTypes.string,
     loading: PropTypes.bool,
-    load: PropTypes.func.isRequired
+    load: PropTypes.func.isRequired,
+    saveUpvote: PropTypes.func.isRequired
   }
 
   render() {
+    const handleUpvote = (topic) => {
+      const {saveUpvote} = this.props;
+      return () => saveUpvote(topic);
+    };
     const {topics, error, loading, load} = this.props;
     let refreshClassName = 'fa fa-refresh';
     if (loading) {
@@ -68,7 +73,11 @@ export default class Topics extends Component {
                 <td className={styles.location}>{topic.location}</td>
                 <td className={styles.scheduledOn}>{topic.dateScheduled}</td>
                 <td className={styles.postedBy}>{topic.speakerName}</td>
-                <td className={styles.upVotes}><a href="#">Upvote | {topic.upVotes}</a></td>
+                <td className={styles.upVotes}>
+                  <button className="btn btn-skyblue" onClick={handleUpvote(topic)}>
+                    <i className="fa fa-thumbs-o-up"/> {topic.upVotes}
+                  </button>
+                </td>
               </tr>)
           }
           </tbody>

@@ -20,12 +20,16 @@ function fetchDataDeferred(getState, dispatch) {
 export default class Topic extends Component {
   static propTypes = {
     topics: PropTypes.array,
-    params: PropTypes.object
+    params: PropTypes.object,
+    saveUpvote: PropTypes.func.isRequired
   }
 
   render() {
+    const handleUpvote = (topic) => {
+      const {saveUpvote} = this.props;
+      return () => saveUpvote(topic);
+    };
     const {topics} = this.props;
-    // let refreshClassName = 'fa fa-refresh';
     const styles = require('./Topic.scss');
     return (
       <div className={styles.topic + ' container'}>
@@ -38,7 +42,11 @@ export default class Topic extends Component {
               <p className={styles.otherDetails}>by <a href={'mailto:' + topic.speakerEmail}>{topic.speakerName}</a> on {topic.dateScheduled} in {topic.event}</p>
               <p className={styles.description}>{topic.description}</p>
               <p className={styles.datePosted}>Posted on {new Date(topic.datePosted).getFullYear() + '-' + (new Date(topic.datePosted).getMonth() + 1) + '-' + new Date(topic.datePosted).getDate()}</p>
-              <p className={styles.upVotes}><a href="#">Upvote | {topic.upVotes}</a></p>
+              <p className={styles.upVotes}>
+                <button className="btn btn-skyblue" onClick={handleUpvote(topic)}>
+                  <i className="fa fa-thumbs-o-up"/> {topic.upVotes}
+                </button>
+              </p>
             </div>)}
       </div>
     );

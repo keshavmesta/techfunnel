@@ -25,6 +25,10 @@
   background-color: transparent;
 }
 
+.btn {
+  outline: 0;
+}
+
 .btn-primary {
     background-color: #f26c4f;
     border-color: #e56246;
@@ -43,4 +47,15 @@
 .btn-warning:hover {
     background-color: #ec350e;
     border-color: #e8330d;
+}
+
+.btn-skyblue {
+  background-color: #f1f8fb;
+  color: #2b6dad;
+  border: 1px solid #bbcadc;
+}
+
+.btn-skyblue:hover {
+    background-color: #E8F4F9;
+    border-color: #B4C4D8;
 }

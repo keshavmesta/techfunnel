@@ -8,7 +8,6 @@ export default function update(req) {
     const topic = req.body;
     topic.datePosted = Date();
     topic.status = 1;
-    console.log(topic);
     TopicModel.create(topic, function (err) {
       if (err) reject(err)
       resolve(topic);
