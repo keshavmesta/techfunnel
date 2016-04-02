@@ -50,8 +50,10 @@ export default (store) => {
       <Route path="about" component={About}/>
       <Route path="login" component={Login}/>
       <Route path="post" component={Post}/>
-      <Route path="topics/:selection" component={Topics}/>
-      <Route path="topic/:selection/:topicid" component={Topic}/>
+      <Route path="topics" component={Topics}/>
+      <Route path="topics/:location" component={Topics}/>
+      <Route path="topics/:location/:event" component={Topics}/>
+      <Route path="topic/:location/:event/:topicid" component={Topic}/>
 
       { /* Catch all route */ }
       <Route path="*" component={NotFound} status={404} />

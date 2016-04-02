@@ -64,13 +64,17 @@ export default class Home extends Component {
         </div>
         </div>
         <section className={styles.counterContainer}>
-        <h2>All our events</h2>
-        { Object.keys(myLocationArray).map(function outercb(location) {
-          return Object.keys(myEventArray).map(function cb(newitem) {
-            return <div key={newitem + location}><Link to={`/topics/${newitem + '-' + location}`}>{newitem + '-' + location}</Link></div>;
-          });
-        })
-      }</section>
+          <h2>All our locations</h2>
+          { Object.keys(myLocationArray).map(function outercb(location) {
+            return <div key={location}><Link to={`/topics/${location}`}>{location}</Link></div>;
+          })
+          }<h2>All our events</h2>
+          { Object.keys(myLocationArray).map(function outercb(location) {
+            return Object.keys(myEventArray).map(function cb(event) {
+              return <div key={event + location}><Link to={`/topics/${location}/${event}`}>{event + ' - ' + location}</Link></div>;
+            });
+          })
+          }</section>
       <section className={styles.counterContainer}>
       <h2>Hot Topics</h2>
       {
