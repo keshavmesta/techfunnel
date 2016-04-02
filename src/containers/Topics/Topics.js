@@ -17,7 +17,9 @@ function fetchDataDeferred(getState, dispatch) {
   state => ({
     topics: state.topics.data,
     error: state.topics.error,
-    loading: state.topics.loading
+    loading: state.topics.loading,
+    locationDirection: 1,
+    eventDirection: 1
   }),
   {...topicActions })
 export default class Topics extends Component {
@@ -27,8 +29,48 @@ export default class Topics extends Component {
     loading: PropTypes.bool,
     load: PropTypes.func.isRequired,
     params: PropTypes.object,
-    saveUpvote: PropTypes.func.isRequired
+    saveUpvote: PropTypes.func.isRequired,
+    locationDirection: PropTypes.number,
+    eventDirection: PropTypes.number
   }
+
+  sortTopicsByLocation = (event) => {
+    event.preventDefault();
+    if (!!this.state && !!this.state.locationDirection) {
+      this.sortTopicsState('location', this.props.topics, this.state.locationDirection);
+    } else {
+      this.sortTopicsState('location', this.props.topics, this.props.locationDirection);
+    }
+  };
+
+  sortTopicsByEvent = (event) => {
+    event.preventDefault();
+    if (!!this.state && !!this.state.eventDirection) {
+      this.sortTopicsState('event', this.props.topics, this.state.eventDirection);
+    } else {
+      this.sortTopicsState('event', this.props.topics, this.props.eventDirection);
+    }
+  };
+
+  sortTopicsState = (field, topics, direction) => {
+    // Sorting ...
+    topics.sort( (topic1, topic2) => {
+      if (topic1[field].toLowerCase() > topic2[field].toLowerCase()) {
+        return -direction;
+      }
+      if (topic1[field].toLowerCase() < topic2[field].toLowerCase()) {
+        return direction;
+      }
+      return 0;
+    });
+
+    // Change state
+    if (field === 'location') {
+      this.setState({topics: topics, 'locationDirection': -direction, 'eventDirection': 1});
+    } else if (field === 'event') {
+      this.setState({topics: topics, 'locationDirection': 1, 'eventDirection': -direction});
+    }
+  };
 
   render() {
     const handleUpvote = (topic) => {
@@ -61,8 +103,8 @@ export default class Topics extends Component {
           <thead>
           <tr>
             <th className={styles.title}>Title</th>
-            <th className={styles.event}>Event</th>
-            <th className={styles.location}>Location</th>
+            <th className={styles.event}><a href="" onClick={this.sortTopicsByEvent}>Event<span style={{marginLeft: '5px'}} className="fa fa-sort"></span></a></th>
+            <th className={styles.location}><a href="" onClick={this.sortTopicsByLocation}>Location<span style={{marginLeft: '5px'}} className="fa fa-sort"></span></a></th>
             <th className={styles.scheduledOn}>Scheduled On</th>
             <th className={styles.postedBy}>Posted By</th>
             <th className={styles.upVotes}> Upvotes</th>
