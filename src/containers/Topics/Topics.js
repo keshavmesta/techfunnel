@@ -61,6 +61,8 @@ export default class Topics extends Component {
           <thead>
           <tr>
             <th className={styles.title}>Title</th>
+            <th className={styles.event}>Event</th>
+            <th className={styles.location}>Location</th>
             <th className={styles.scheduledOn}>Scheduled On</th>
             <th className={styles.postedBy}>Posted By</th>
             <th className={styles.upVotes}> Upvotes</th>
