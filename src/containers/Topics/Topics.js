@@ -35,9 +35,8 @@ export default class Topics extends Component {
       const {saveUpvote} = this.props;
       return () => saveUpvote(topic);
     };
-    const selection = this.props.params.selection.split('-');
-    const eventName = selection[0];
-    const locationName = selection[1];
+    const eventName = this.props.params.event;
+    const locationName = this.props.params.location;
     const {topics, error, loading, load} = this.props;
     let refreshClassName = 'fa fa-refresh';
     if (loading) {
@@ -56,13 +55,12 @@ export default class Topics extends Component {
           {' '}
           {error}
         </div>}
+        {this.props.params.event ? <div><Link to={`/topics/${this.props.params.location}`}>Go Back</Link></div> : <div><div><Link to={`/topics/${this.props.params.location}/XT Summit`}>XT Summit</Link></div><div><Link to={`/topics/${this.props.params.location}/Tech Friday`}>Tech Friday</Link></div></div>}
         {topics && topics.length &&
         <table className="table">
           <thead>
           <tr>
             <th className={styles.title}>Title</th>
-            <th className={styles.event}>Event</th>
-            <th className={styles.location}>Location</th>
             <th className={styles.scheduledOn}>Scheduled On</th>
             <th className={styles.postedBy}>Posted By</th>
             <th className={styles.upVotes}> Upvotes</th>
@@ -71,9 +69,9 @@ export default class Topics extends Component {
           <tbody>
           {
             topics.map((topic) =>
-            topic.location === locationName && topic.event === eventName ?
+              (locationName ? locationName === topic.location : true) && (eventName ? eventName === topic.event : true) ?
               <tr key={topic._id}>
-                <td className={styles.title}><Link to={`/topic/${this.props.params.selection}/${topic._id}`}>{topic.title}</Link></td>
+                <td className={styles.title}><Link to={`/topic/${topic.location}/${topic.event}/${topic._id}`}>{topic.title}</Link></td>
                 <td className={styles.event}>{topic.event}</td>
                 <td className={styles.location}>{topic.location}</td>
                 <td className={styles.scheduledOn}>{topic.dateScheduled}</td>
