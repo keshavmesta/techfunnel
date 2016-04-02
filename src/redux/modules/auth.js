@@ -1,3 +1,5 @@
+// import md5 from 'md5';
+import cookie from 'react-cookie';
 const LOAD = 'redux-example/auth/LOAD';
 const LOAD_SUCCESS = 'redux-example/auth/LOAD_SUCCESS';
 const LOAD_FAIL = 'redux-example/auth/LOAD_FAIL';
@@ -7,9 +9,12 @@ const LOGIN_FAIL = 'redux-example/auth/LOGIN_FAIL';
 const LOGOUT = 'redux-example/auth/LOGOUT';
 const LOGOUT_SUCCESS = 'redux-example/auth/LOGOUT_SUCCESS';
 const LOGOUT_FAIL = 'redux-example/auth/LOGOUT_FAIL';
+const LOAD_AUTH_COOKIE = 'LOAD_AUTH_COOKIE';
 
 const initialState = {
-  loaded: false
+  loaded: false,
+  token: null,
+  user: null
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -68,6 +73,15 @@ export default function reducer(state = initialState, action = {}) {
         loggingOut: false,
         logoutError: action.error
       };
+    case LOAD_AUTH_COOKIE:
+      const loginResult = cookie.load('loginResult');
+      const isLogged = loginResult ? true : false;
+      const user = isLogged ? loginResult.user : null;
+      return {
+        ...state,
+        user,
+        logged: isLogged
+      };
     default:
       return state;
   }
@@ -84,12 +98,19 @@ export function load() {
   };
 }
 
-export function login(name) {
+export function loadAuthCookie() {
+  return {
+    type: LOAD_AUTH_COOKIE
+  };
+}
+
+export function login(username, password) {
   return {
     types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
     promise: (client) => client.post('/login', {
       data: {
-        name: name
+        username: username,
+        password: password
       }
     })
   };
