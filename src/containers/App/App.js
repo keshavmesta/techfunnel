@@ -65,6 +65,7 @@ export default class App extends Component {
           <Navbar.Header>
             <Navbar.Brand>
               <IndexLink to="/" activeStyle={{color: '#e56246'}}>
+                <div className={styles.brand}/>
                 <span>Home</span>
               </IndexLink>
             </Navbar.Brand>
@@ -94,9 +95,9 @@ export default class App extends Component {
           {this.props.children}
         </div>
 
-        <div className="well text-center">
-          © 2016 Sapient Consulting Ltd
-        </div>
+        <footer className="well text-center">
+          <p>© 2016 Sapient Consulting Ltd</p>
+        </footer>
       </div>
     );
   }

@@ -97,7 +97,7 @@ export default class Topics extends Component {
           {' '}
           {error}
         </div>}
-        {this.props.params.event ? <div><Link to={`/topics/${this.props.params.location}`}>Go Back</Link></div> : <div><div><Link to={`/topics/${this.props.params.location}/XT Summit`}>XT Summit</Link></div><div><Link to={`/topics/${this.props.params.location}/Tech Friday`}>Tech Friday</Link></div></div>}
+        {this.props.params.event ? <div><Link to={`/topics/${this.props.params.location}`}>Go Back</Link></div> : <div><div>Filter By: <Link to={`/topics/${this.props.params.location}/XT Summit`}>XT Summit</Link> | <Link to={`/topics/${this.props.params.location}/Tech Friday`}>Tech Friday</Link></div></div>}
         {topics && topics.length &&
         <table className="table">
           <thead>

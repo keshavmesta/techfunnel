@@ -31,4 +31,15 @@
     color: #2b6dad;
     border: 1px solid #bbcadc;
   }
+
+  .previous, .next {
+    font-size: 20px;
+    padding: 0 10px;
+  }
+  .previous {
+    padding-left: 0;
+  }
+  .goBackCta {
+    padding-top: 15px;
+  }
 }

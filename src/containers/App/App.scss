@@ -1,7 +1,7 @@
 .app {
   .brand {
     position: absolute;
-    $size: 40px;
+    $size: 45px;
     top: 5px;
     left: 5px;
     display: inline-block;
@@ -18,5 +18,5 @@
   }
 }
 .appContent {
-  margin: 50px 0; // for fixed navbar
+  margin: 56px 0; // for fixed navbar
 }

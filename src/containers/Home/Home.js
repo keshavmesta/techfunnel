@@ -42,48 +42,46 @@ export default class Home extends Component {
       });
       const sortedArray = upvotesArray.sort(function cb(firstNumber, secondNumber) {return secondNumber - firstNumber;});
       const styles = require('./Home.scss');
-      // require the logo image both from client and server
-      const logoImage = require('./logo.png');
+
       return (
         <div className={styles.home}>
-        <Helmet title="Home"/>
-        <div className={styles.masthead}>
-        <div className="container">
-        <div className={styles.logo}>
-        <p>
-        <img src={logoImage}/>
-        </p>
-        </div>
-        <h1>{config.app.title}</h1>
+          <Helmet title="Home"/>
+          <div className={styles.masthead}>
+          <div className="container">
+          <h1>{config.app.title}</h1>
 
-        <h2>{config.app.description}</h2>
+          <h2>{config.app.description}</h2>
 
-        <p className={styles.humility}>
-        Created and maintained by <a href="mailto:techfridaycommittee@sapient.com">Tech Friday Committee</a>.
-        </p>
-        </div>
-        </div>
-        <section className={styles.counterContainer}>
-          <h2>All our locations</h2>
-          { Object.keys(myLocationArray).map(function outercb(location) {
-            return <div key={location}><Link to={`/topics/${location}`}>{location}</Link></div>;
-          })
-          }<h2>All our events</h2>
-          { Object.keys(myLocationArray).map(function outercb(location) {
-            return Object.keys(myEventArray).map(function cb(event) {
-              return <div key={event + location}><Link to={`/topics/${location}/${event}`}>{event + ' - ' + location}</Link></div>;
-            });
-          })
-          }</section>
-      <section className={styles.counterContainer}>
-      <h2>Hot Topics</h2>
-      {
-        sortedArray.splice(0, 2).map(function cb(upVote) {
-          return topics.map(function cbinner(topic) {
-            return (topic.upVotes === upVote ? <div><Link to={`/topic/${topic.event + '-' + topic.location}/${topic._id}`}>{topic.title}</Link></div> : null);
-          });
-        })
-      }</section>
+          <p className={styles.humility}>
+          Created and maintained by <a href="mailto:techfridaycommittee@sapient.com">Tech Friday Committee</a>.
+          </p>
+          </div>
+          </div>
+          <section className={styles.homeMain}>
+            <div className="container">
+              <div className={styles.hotTopicsContainer}>
+                <h2>Hot Topics</h2>
+                {
+                sortedArray.splice(0, 6).map(function cb(upVote) {
+                  return topics.map(function cbinner(topic) {
+                    return (topic.upVotes === upVote ? <div className={styles.hotTopicGrid}><h4><Link to={`/topic/${topic.event + '-' + topic.location}/${topic._id}`}>{topic.title}</Link></h4><p>{topic.description.substring(0, 175)}...</p></div> : null);
+                  });
+                })
+                }
+              </div>
+              <h2>Topics by locations</h2>
+              { Object.keys(myLocationArray).map(function outercb(location) {
+                return <div key={location}><Link to={`/topics/${location}`}>{location}</Link></div>;
+              })
+            }<h2>Topics by events</h2>
+              { Object.keys(myLocationArray).map(function outercb(location) {
+                return Object.keys(myEventArray).map(function cb(event) {
+                  return <div key={event + location}><Link to={`/topics/${location}/${event}`}>{event + ' - ' + location}</Link></div>;
+                });
+              })
+              }
+            </div>
+          </section>
         </div>
       );
     }

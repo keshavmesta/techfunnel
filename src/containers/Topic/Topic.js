@@ -45,17 +45,15 @@ export default class Topic extends Component {
     const thisSelectionTopics = selectionTopics.filter((topicId) => { return topicId !== undefined; });
     return (
       <div className={styles.topic + ' container'}>
-        <div><Link to={`/topics/${this.props.params.location}/${this.props.params.event}`}>Go Back</Link></div>
+        <div className={styles.goBackCta}><Link to={`/topics/${this.props.params.location}/${this.props.params.event}`}>Go Back</Link></div>
         {topics && topics.length &&
           topics.map((topic) =>
           topic._id === this.props.params.topicid ?
           <div key={topic._id}>
-             <span style={{display: 'none'}}> { currentIndex = thisSelectionTopics.indexOf(topic._id)}
+              <span style={{display: 'none'}}> { currentIndex = thisSelectionTopics.indexOf(topic._id)}
                { prevIndex = currentIndex === 0 ? thisSelectionTopics.length - 1 : currentIndex - 1}
                { nextIndex = currentIndex === thisSelectionTopics.length - 1 ? 0 : currentIndex + 1}</span>
-              <span><Link to={`/topic/${topic.location}/${topic.event}/${thisSelectionTopics[prevIndex]}`}>Previous Topic</Link></span>
               <h1>{topic.title}</h1>
-              <span><Link to={`/topic/${topic.location}/${topic.event}/${thisSelectionTopics[nextIndex]}`}>Next Topic</Link></span>
               <Helmet title={topic.title}/>
               <p className={styles.otherDetails}>by <a href={'mailto:' + topic.speakerEmail}>{topic.speakerName}</a> on {topic.dateScheduled} in {topic.event}</p>
               <p className={styles.description}>{topic.description}</p>
@@ -64,6 +62,10 @@ export default class Topic extends Component {
                 <button className="btn btn-skyblue" onClick={handleUpvote(topic)}>
                   <i className="fa fa-thumbs-o-up"/> {topic.upVotes}
                 </button>
+              </p>
+              <p>
+                <Link to={`/topic/${topic.location}/${topic.event}/${thisSelectionTopics[prevIndex]}`} className={styles.previous}><i className="fa fa-chevron-left"></i></Link>
+                <Link to={`/topic/${topic.location}/${topic.event}/${thisSelectionTopics[nextIndex]}`} className={styles.next}><i className="fa fa-chevron-right"></i></Link>
               </p>
             </div> : null)}
       </div>
