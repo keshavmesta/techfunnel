@@ -64,7 +64,7 @@ export default class Home extends Component {
                 {
                 sortedArray.splice(0, 6).map(function cb(upVote) {
                   return topics.map(function cbinner(topic) {
-                    return (topic.upVotes === upVote ? <div className={styles.hotTopicGrid}><h4><Link to={`/topic/${topic.event + '-' + topic.location}/${topic._id}`}>{topic.title}</Link></h4><p>{topic.description.substring(0, 175)}...</p></div> : null);
+                    return (topic.upVotes === upVote ? <div className={styles.hotTopicGrid}><h4><Link to={`/topic/${topic.location}/${topic.event}/${topic._id}`}>{topic.title}</Link></h4><p>{topic.description.substring(0, 175)}...</p></div> : null);
                   });
                 })
                 }

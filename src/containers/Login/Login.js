@@ -2,6 +2,8 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
 import * as authActions from 'redux/modules/auth';
+import superagent from 'superagent';
+import cookie from 'react-cookie';
 
 @connect(
   state => ({user: state.auth.user}),
@@ -17,9 +19,20 @@ export default class Login extends Component {
     event.preventDefault();
     const username = this.refs.username;
     const password = this.refs.password;
-    this.props.login(username.value, password.value);
-    username.value = '';
-    password.value = '';
+    superagent
+      .post('https://studioauth.sapient.com/apiv1/authenticate')
+      .send({ username: username.value, password: password.value })
+      .set('Content-Type', 'application/x-www-form-urlencoded')
+      .end(function loginHandle(err, res) {
+        if (res.body.success) {
+          cookie.save('username', username.value, { path: '/' });
+          cookie.save('token', res.body.token, { path: '/' });
+          window.location.href = '/topics';
+        }else {
+          password.value = '';
+          username.value = '';
+        }
+      });
   }
 
   render() {
