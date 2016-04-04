@@ -13,7 +13,7 @@ export default function login(req) {
               // req.session.user = user;
               // return Promise.resolve(user);
           } else {
-            console.log('WTF Happend: '+error);
+            console.log(error);
           }
       }
   );

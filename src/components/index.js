@@ -5,5 +5,4 @@
  *
  */
 
-export InfoBar from './InfoBar/InfoBar';
 export TopicForm from './TopicForm/TopicForm';
