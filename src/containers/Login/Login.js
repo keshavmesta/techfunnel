@@ -19,20 +19,25 @@ export default class Login extends Component {
     event.preventDefault();
     const username = this.refs.username;
     const password = this.refs.password;
+    const that = this;
+
+    function loginHandle(err, res) {
+      if (res.body.success) {
+        cookie.save('username', username.value, { path: '/' });
+        cookie.save('token', res.body.token, { path: '/' });
+        that.props.login(username.value, res.body.token);
+        // window.location.href = '/topics';
+      } else {
+        password.value = '';
+        username.value = '';
+      }
+    }
+
     superagent
       .post('https://studioauth.sapient.com/apiv1/authenticate')
       .send({ username: username.value, password: password.value })
       .set('Content-Type', 'application/x-www-form-urlencoded')
-      .end(function loginHandle(err, res) {
-        if (res.body.success) {
-          cookie.save('username', username.value, { path: '/' });
-          cookie.save('token', res.body.token, { path: '/' });
-          window.location.href = '/topics';
-        }else {
-          password.value = '';
-          username.value = '';
-        }
-      });
+      .end(loginHandle);
   }
 
   render() {

@@ -104,13 +104,13 @@ export function loadAuthCookie() {
   };
 }
 
-export function login(username, password) {
+export function login(username, token) {
   return {
     types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
     promise: (client) => client.post('/login', {
       data: {
         username: username,
-        password: password
+        token: token
       }
     })
   };

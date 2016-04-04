@@ -10,6 +10,7 @@ import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/module
 import { pushState } from 'redux-router';
 import connectData from 'helpers/connectData';
 import config from '../../config';
+import cookie from 'react-cookie';
 
 function fetchData(getState, dispatch) {
   const promises = [];
@@ -38,7 +39,7 @@ export default class App extends Component {
   componentWillReceiveProps(nextProps) {
     if (!this.props.user && nextProps.user) {
       // login
-      this.props.pushState(null, '/loginSuccess');
+      this.props.pushState(null, '/topics');
     } else if (this.props.user && !nextProps.user) {
       // logout
       this.props.pushState(null, '/');
@@ -47,6 +48,8 @@ export default class App extends Component {
 
   handleLogout = (event) => {
     event.preventDefault();
+    cookie.remove('username', { path: '/' });
+    cookie.remove('token', { path: '/' });
     this.props.logout();
   }
 
@@ -76,10 +79,21 @@ export default class App extends Component {
               <LinkContainer to="/post">
                 <NavItem eventKey={2}>Post a Topic</NavItem>
               </LinkContainer>
+
             </Nav>
             {user &&
             <p className={styles.loggedInMessage + ' navbar-text'}>Logged in as <strong>{user.name}</strong>.</p>}
             <Nav navbar pullRight>
+              {!user &&
+              <LinkContainer to="/login">
+                <NavItem eventKey={5}>Login</NavItem>
+              </LinkContainer>}
+              {user &&
+              <LinkContainer to="/logout">
+                <NavItem eventKey={6} className="logout-link" onClick={this.handleLogout}>
+                  Logout
+                </NavItem>
+              </LinkContainer>}
               <NavItem eventKey={1} target="_blank" title="View on Github" href="https://github.com/keshavmesta/techfunnel">
                 <i className="fa fa-github"/>
               </NavItem>

@@ -19,7 +19,8 @@ function fetchDataDeferred(getState, dispatch) {
     error: state.topics.error,
     loading: state.topics.loading,
     locationDirection: 1,
-    eventDirection: 1
+    eventDirection: 1,
+    user: state.auth.user
   }),
   {...topicActions })
 export default class Topics extends Component {
@@ -31,7 +32,8 @@ export default class Topics extends Component {
     params: PropTypes.object,
     saveUpvote: PropTypes.func.isRequired,
     locationDirection: PropTypes.number,
-    eventDirection: PropTypes.number
+    eventDirection: PropTypes.number,
+    user: PropTypes.object
   }
 
   sortTopicsByLocation = (event) => {
@@ -74,8 +76,10 @@ export default class Topics extends Component {
 
   render() {
     const handleUpvote = (topic) => {
-      const {saveUpvote} = this.props;
-      return () => saveUpvote(topic);
+      const {saveUpvote, user} = this.props;
+      if (user) {
+        return () => saveUpvote(topic);
+      }
     };
     const eventName = this.props.params.event;
     const locationName = this.props.params.location;
