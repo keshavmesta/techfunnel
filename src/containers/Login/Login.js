@@ -15,6 +15,11 @@ export default class Login extends Component {
     logout: PropTypes.func
   }
 
+  constructor() {
+    super();
+    this.state = {errorMessage: ''};
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
     const username = this.refs.username;
@@ -26,10 +31,10 @@ export default class Login extends Component {
         cookie.save('username', username.value, { path: '/' });
         cookie.save('token', res.body.token, { path: '/' });
         that.props.login(username.value, res.body.token);
-        // window.location.href = '/topics';
       } else {
         password.value = '';
         username.value = '';
+        that.setState({errorMessage: res.body.message});
       }
     }
 
@@ -61,6 +66,7 @@ export default class Login extends Component {
               </button>
             </div>
           </form>
+          <div className={styles.errorMessage}>{this.state.errorMessage}</div>
         </div>
         }
         {user &&

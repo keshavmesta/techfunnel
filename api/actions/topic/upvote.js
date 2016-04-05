@@ -3,9 +3,10 @@ import { UpvoteModel } from './resource/UpvoteModel';
 import mongoose from 'mongoose';
 
 export default function upvote(req) {
+
   return new Promise((resolve, reject) => {
     let topic_id = req.body._id;
-    let user = req.session.user || 'kmesta';
+    let user = req.session.user.name || req.session.user || 'srahm3';
 
     // Check if user has already voted for the topic
     UpvoteModel.find({user: user, topicId: topic_id}).then(function(result){
