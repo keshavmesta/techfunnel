@@ -111,6 +111,7 @@ export default class Topics extends Component {
             <th className={styles.location}><a href="" onClick={this.sortTopicsByLocation}>Location<span style={{marginLeft: '5px'}} className="fa fa-sort"></span></a></th>
             <th className={styles.scheduledOn}>Scheduled On</th>
             <th className={styles.postedBy}>Posted By</th>
+            <th className={styles.postedBy}>Domain</th>
             <th className={styles.upVotes}> Upvotes</th>
           </tr>
           </thead>
@@ -124,6 +125,7 @@ export default class Topics extends Component {
                 <td className={styles.location}>{topic.location}</td>
                 <td className={styles.scheduledOn}>{topic.dateScheduled}</td>
                 <td className={styles.postedBy}>{topic.speakerName}</td>
+                <td className={styles.postedBy}>{topic.domain}</td>
                 <td className={styles.upVotes}>
                   <button className="btn btn-skyblue" onClick={handleUpvote(topic)}>
                     <i className="fa fa-thumbs-o-up"/> {topic.upVotes}

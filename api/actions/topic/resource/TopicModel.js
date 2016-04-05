@@ -12,7 +12,8 @@ const TopicSchema = new mongoose.Schema({
   dateScheduled: String,
   comments: String,
   status: Number,
-  upVotes: Number
+  upVotes: Number,
+  domain: String
 });
 
 export const TopicModel = mongoose.model('Topics', TopicSchema);

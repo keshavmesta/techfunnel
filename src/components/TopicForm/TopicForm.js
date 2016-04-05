@@ -26,7 +26,7 @@ function asyncValidate(data) {
 
 @reduxForm({
   form: 'post',
-  fields: ['title', 'description', 'speakerName', 'speakerId', 'speakerEmail', 'dateScheduled', 'event', 'location', 'comments'],
+  fields: ['title', 'description', 'speakerName', 'speakerId', 'speakerEmail', 'dateScheduled', 'event', 'location', 'domain', 'comments'],
   validate: formValidation,
   asyncValidate,
   asyncBlurFields: ['email']
@@ -43,7 +43,7 @@ class TopicForm extends Component {
   render() {
     const {
       asyncValidating,
-      fields: {title, description, speakerName, speakerId, speakerEmail, dateScheduled, event, location, comments},
+      fields: {title, description, speakerName, speakerId, speakerEmail, dateScheduled, event, location, domain, comments},
       handleSubmit,
       resetForm
       } = this.props;
@@ -107,6 +107,21 @@ class TopicForm extends Component {
                 <option>Noida</option>
               </select>
               {location.error && location.touched && <div className="text-danger">{location.error}</div>}
+            </div>
+          </div>
+          <div className={'form-group' + (domain.error && domain.touched ? ' has-error' : '')}>
+            <label htmlFor="domain" className="col-sm-2">Domain</label>
+            <div className="col-sm-8">
+              <select id="domain" className="form-control" {...domain}>
+                <option defaultValue>Select Domain</option>
+                <option>Big Data</option>
+                <option>IOT</option>
+                <option>Mobility</option>
+                <option>Virtual Reality</option>
+                <option>Wearables</option>
+                <option>Machine Learnign</option>
+              </select>
+              {domain.error && domain.touched && <div className="text-danger">{domain.error}</div>}
             </div>
           </div>
 
