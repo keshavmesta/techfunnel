@@ -28,8 +28,8 @@ export default class Login extends Component {
 
     function loginHandle(err, res) {
       if (res.body.success) {
-        let now = new Date();
-        let exp = new Date(now.getTime() + 900*1000);
+        const now = new Date();
+        const exp = new Date(now.getTime() + 900 * 1000);
         cookie.save('username', username.value, { path: '/', expires: exp });
         that.props.login(username.value, res.body.token);
       } else {
