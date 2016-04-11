@@ -6,6 +6,7 @@ const TopicSchema = new mongoose.Schema({
   speakerName: String,
   speakerId: Number,
   speakerEmail: String,
+  speakerMobile: String,
   event: String,
   location: String,
   datePosted: Date,
@@ -13,7 +14,8 @@ const TopicSchema = new mongoose.Schema({
   comments: String,
   status: Number,
   upVotes: Number,
-  domain: String
+  domain: String,
+  tags: String
 });
 
 export const TopicModel = mongoose.model('Topics', TopicSchema);
