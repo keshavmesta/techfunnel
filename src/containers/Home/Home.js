@@ -41,6 +41,7 @@ export default class Home extends Component {
         upvotesArray.push(topic.upVotes);
       });
       const sortedArray = upvotesArray.sort(function cb(firstNumber, secondNumber) {return secondNumber - firstNumber;});
+      const topicsClone = topics.slice(0).reverse();
       const styles = require('./Home.scss');
 
       return (
@@ -59,10 +60,16 @@ export default class Home extends Component {
           </div>
           <section className={styles.homeMain}>
             <div className="container">
+              <div>XT Summit Banner</div>
               <div className={styles.hotTopicsContainer}>
-                <h2>Hot Topics</h2>
+                <h2>Trending Topics</h2>
                 {
-                sortedArray.splice(0, 6).map(function cb(upVote) {
+                  topicsClone.splice(0, 3).map(function cbi(topic) {
+                    return (<div className={styles.hotTopicGrid}><h4><Link to={`/topic/${topic.location}/${topic.event}/${topic._id}`}>{topic.title}</Link></h4><p>{topic.description.substring(0, 175)}...</p></div>);
+                  })
+                }
+                {
+                sortedArray.splice(0, 3).map(function cb(upVote) {
                   return topics.map(function cbinner(topic) {
                     return (topic.upVotes === upVote ? <div className={styles.hotTopicGrid}><h4><Link to={`/topic/${topic.location}/${topic.event}/${topic._id}`}>{topic.title}</Link></h4><p>{topic.description.substring(0, 175)}...</p></div> : null);
                   });
