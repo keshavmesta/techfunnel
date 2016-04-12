@@ -11,7 +11,6 @@ const UPVOTE_FAIL = 'redux-example/topics/UPVOTE_FAIL';
 const initialState = {
   loaded: false,
   saveError: {},
-  upvoteError: {}
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -47,11 +46,11 @@ export default function reducer(state = initialState, action = {}) {
         data: data,
         editing: {
           ...state.editing,
-          [action.id]: false
+          [action._id]: false
         },
         saveError: {
           ...state.saveError,
-          [action.id]: null
+          [action._id]: null
         }
       };
     case SAVE_FAIL:
@@ -59,7 +58,7 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         saveError: {
           ...state.saveError,
-          [action.id]: action.error
+          [action._id]: action.error
         }
       } : state;
     case UPVOTE:
@@ -67,19 +66,18 @@ export default function reducer(state = initialState, action = {}) {
     case UPVOTE_SUCCESS:
       return {
         ...state,
-        loading: false,
-        loaded: true,
+        upvoting: false,
+        upvoted: true,
         data: action.result,
         error: null
       };
     case UPVOTE_FAIL:
-      return typeof action.error === 'string' ? {
+      return {
         ...state,
-        upvoteError: {
-          ...state.upvoteError,
-          [action.id]: action.error
-        }
-      } : state;
+        upvoting: false,
+        upvoted: false,
+        error: action.error
+      };
     default:
       return state;
   }

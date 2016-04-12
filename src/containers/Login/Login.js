@@ -26,10 +26,10 @@ export default class Login extends Component {
     const password = this.refs.password;
     const that = this;
 
-    function loginHandle(err, res) {
+    function loginHandler(err, res) {
       if (res.body.success) {
-        let now = new Date();
-        let exp = new Date(now.getTime() + 900*1000);
+        const now = new Date();
+        const exp = new Date(now.getTime() + 900 * 1000);
         cookie.save('username', username.value, { path: '/', expires: exp });
         that.props.login(username.value, res.body.token);
       } else {
@@ -40,10 +40,10 @@ export default class Login extends Component {
     }
 
     superagent
-      .post('https://studioauth.sapient.com/apiv1/authenticate')
+      .post('http://studioauth.sapient.com/apiv1/authenticate')
       .send({ username: username.value, password: password.value })
       .set('Content-Type', 'application/x-www-form-urlencoded')
-      .end(loginHandle);
+      .end(loginHandler);
   }
 
   render() {
@@ -67,7 +67,11 @@ export default class Login extends Component {
               </button>
             </div>
           </form>
-          <div className={styles.errorMessage}>{this.state.errorMessage}</div>
+          {this.state.errorMessage && <div className="alert alert-danger" role="alert">
+            <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            {' '}
+            {this.state.errorMessage}
+          </div>}
         </div>
         }
         {user &&
