@@ -65,13 +65,13 @@ export default class Home extends Component {
                 <h2>Trending Topics</h2>
                 {
                   topicsClone.splice(0, 3).map(function cbi(topic) {
-                    return (<div className={styles.hotTopicGrid}><h4><Link to={`/topic/${topic.location}/${topic.event}/${topic._id}`}>{topic.title}</Link></h4><p>{topic.description.substring(0, 175)}...</p></div>);
+                    return (<div key={topic._id} className={styles.hotTopicGrid}><h4><Link to={`/topic/${topic.location}/${topic.event}/${topic._id}`}>{topic.title}</Link></h4><p>{topic.description.substring(0, 175)}...</p></div>);
                   })
                 }
                 {
                 sortedArray.splice(0, 3).map(function cb(upVote) {
                   return topics.map(function cbinner(topic) {
-                    return (topic.upVotes === upVote ? <div className={styles.hotTopicGrid}><h4><Link to={`/topic/${topic.location}/${topic.event}/${topic._id}`}>{topic.title}</Link></h4><p>{topic.description.substring(0, 175)}...</p></div> : null);
+                    return (topic.upVotes === upVote ? <div key={topic._id} className={styles.hotTopicGrid}><h4><Link to={`/topic/${topic.location}/${topic.event}/${topic._id}`}>{topic.title}</Link></h4><p>{topic.description.substring(0, 175)}...</p></div> : null);
                   });
                 })
                 }
