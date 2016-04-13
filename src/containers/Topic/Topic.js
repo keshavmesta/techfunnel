@@ -15,7 +15,7 @@ function fetchDataDeferred(getState, dispatch) {
 @connectData(null, fetchDataDeferred)
 @connect(
   state => ({
-    topics: state.topics.data
+    topics: state.topics.data.topics
   }),
   {...topicActions })
 export default class Topic extends Component {

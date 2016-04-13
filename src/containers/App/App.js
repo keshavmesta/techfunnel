@@ -49,7 +49,6 @@ export default class App extends Component {
   handleLogout = (event) => {
     event.preventDefault();
     cookie.remove('username', { path: '/' });
-    cookie.remove('token', { path: '/' });
     this.props.logout();
   }
 

@@ -15,7 +15,8 @@ function fetchDataDeferred(getState, dispatch) {
 @connectData(null, fetchDataDeferred)
 @connect(
   state => ({
-    topics: state.topics.data,
+    topics: state.topics.data.topics,
+    upvotedTopics: state.topics.data.upvotedTopics,
     error: state.topics.error,
     loading: state.topics.loading,
     locationDirection: 1,
@@ -26,6 +27,7 @@ function fetchDataDeferred(getState, dispatch) {
 export default class Topics extends Component {
   static propTypes = {
     topics: PropTypes.array,
+    upvotedTopics: PropTypes.array,
     error: PropTypes.string,
     loading: PropTypes.bool,
     load: PropTypes.func.isRequired,
@@ -83,7 +85,7 @@ export default class Topics extends Component {
     };
     const eventName = this.props.params.event;
     const locationName = this.props.params.location;
-    const {topics, error, loading, load} = this.props;
+    const {topics, error, loading, load, upvotedTopics} = this.props;
     let refreshClassName = 'fa fa-refresh';
     if (loading) {
       refreshClassName += ' fa-spin';
@@ -127,9 +129,18 @@ export default class Topics extends Component {
                 <td className={styles.postedBy}>{topic.speakerName}</td>
                 <td className={styles.postedBy}>{topic.domain}</td>
                 <td className={styles.upVotes}>
+                  {upvotedTopics && upvotedTopics.indexOf(topic._id) >= 0 &&
+                  <button className="btn btn-disabled" title="You have already upvoted this topic">
+                    <i className="fa fa-thumbs-o-up"/> {topic.upVotes}
+                  </button>}
+                  {upvotedTopics && upvotedTopics.indexOf(topic._id) === -1 &&
                   <button className="btn btn-skyblue" onClick={handleUpvote(topic)}>
                     <i className="fa fa-thumbs-o-up"/> {topic.upVotes}
-                  </button>
+                  </button>}
+                  {!upvotedTopics &&
+                  <button className="btn btn-skyblue" onClick={handleUpvote(topic)}>
+                    <i className="fa fa-thumbs-o-up"/> {topic.upVotes}
+                  </button>}
                 </td>
               </tr> : null)
           }

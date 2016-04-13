@@ -18,7 +18,21 @@ export default function upvote(req) {
           TopicModel.update({_id: mongoose.Types.ObjectId(topic_id)}, {$inc: {upVotes: 1}}).then(function(result){
             UpvoteModel.create({user: user, topicId: topic_id}).then(function(result) {
               TopicModel.find({}).then(function(result) {
-                resolve(result);
+                let topics = result;
+                let upvotedTopics = [];
+
+                if(req.session.user) {
+                  UpvoteModel.find({user: req.session.user.name}, {topicId: 1}).then(function(result) {
+                    if(result && result.length) {
+                      result.map((topic) => upvotedTopics.push(topic.topicId));
+                      resolve({topics: topics, upvotedTopics: upvotedTopics});
+                    } else {
+                      resolve({topics: topics});
+                    }
+                  })
+                } else {
+                  resolve({topics: topics});
+                }
               }, function(err) {
                 reject(err);
               })

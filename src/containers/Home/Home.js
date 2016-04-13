@@ -16,7 +16,7 @@ function fetchDataDeferred(getState, dispatch) {
 @connectData(null, fetchDataDeferred)
 @connect(
   state => ({
-    topics: state.topics.data,
+    topics: state.topics.data.topics,
     error: state.topics.error,
     loading: state.topics.loading
   }),

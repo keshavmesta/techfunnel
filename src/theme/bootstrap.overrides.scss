@@ -61,6 +61,16 @@
     border-color: #B4C4D8;
 }
 
+.btn-disabled {
+  background-color: #f6f6f6;
+  color: #999;
+  border: 1px solid #ddd;
+}
+
+.btn-disabled:hover {
+  color: #999;
+}
+
 a:hover {
   text-decoration: none;
 }
