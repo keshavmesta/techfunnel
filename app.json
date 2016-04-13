@@ -1,5 +1,5 @@
 {
-  "name": "techfunnel",
+  "name": "talkfunnel",
   "description": "Example of an isomorphic (universal) webapp using react redux and hot reloading",
   "repository": "https://github.com/keshavmesta/techfunnel",
   "logo": "http://node-js-sample.herokuapp.com/node.svg",
