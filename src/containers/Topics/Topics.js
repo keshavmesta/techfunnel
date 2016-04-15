@@ -5,6 +5,7 @@ import {Link} from 'react-router';
 import * as topicActions from 'redux/modules/topics';
 import {isLoaded, load as loadTopics} from 'redux/modules/topics';
 import connectData from 'helpers/connectData';
+import { pushState } from 'redux-router';
 
 function fetchDataDeferred(getState, dispatch) {
   if (!isLoaded(getState())) {
@@ -23,7 +24,7 @@ function fetchDataDeferred(getState, dispatch) {
     eventDirection: 1,
     user: state.auth.user
   }),
-  {...topicActions })
+  {...topicActions, pushState})
 export default class Topics extends Component {
   static propTypes = {
     topics: PropTypes.array,
@@ -35,7 +36,8 @@ export default class Topics extends Component {
     saveUpvote: PropTypes.func.isRequired,
     locationDirection: PropTypes.number,
     eventDirection: PropTypes.number,
-    user: PropTypes.object
+    user: PropTypes.object,
+    pushState: PropTypes.func.isRequired
   }
 
   sortTopicsByLocation = (event) => {
@@ -82,6 +84,7 @@ export default class Topics extends Component {
       if (user) {
         return () => saveUpvote(topic);
       }
+      return () => this.props.pushState(null, '/login');
     };
     const eventName = this.props.params.event;
     const locationName = this.props.params.location;
