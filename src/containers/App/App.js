@@ -11,6 +11,7 @@ import { pushState } from 'redux-router';
 import connectData from 'helpers/connectData';
 import config from '../../config';
 import cookie from 'react-cookie';
+import {load as loadTopics} from 'redux/modules/topics';
 
 function fetchData(getState, dispatch) {
   const promises = [];
@@ -23,13 +24,14 @@ function fetchData(getState, dispatch) {
 @connectData(fetchData)
 @connect(
   state => ({user: state.auth.user}),
-  {logout, pushState})
+  {logout, pushState, loadTopics})
 export default class App extends Component {
   static propTypes = {
     children: PropTypes.object.isRequired,
     user: PropTypes.object,
     logout: PropTypes.func.isRequired,
-    pushState: PropTypes.func.isRequired
+    pushState: PropTypes.func.isRequired,
+    loadTopics: PropTypes.func.isRequired,
   };
 
   static contextTypes = {
@@ -39,10 +41,11 @@ export default class App extends Component {
   componentWillReceiveProps(nextProps) {
     if (!this.props.user && nextProps.user) {
       // login
-      // this.props.pushState(null, '/topics');
-      window.location.href = '/topics';
+      this.props.loadTopics();
+      this.props.pushState(null, '/topics');
     } else if (this.props.user && !nextProps.user) {
       // logout
+      this.props.loadTopics();
       this.props.pushState(null, '/');
     }
   }
