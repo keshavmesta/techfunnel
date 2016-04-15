@@ -5,26 +5,31 @@ import {initialize} from 'redux-form';
 import {TopicForm} from 'components';
 import * as topicActions from 'redux/modules/topics';
 import {Link} from 'react-router';
+import { pushState } from 'redux-router';
 
 @connect(
   state => ({
     saveError: state.topics.saveError,
     user: state.auth.user
   }),
-  {...topicActions, initialize})
+  {...topicActions, initialize, pushState})
 
 export default class Post extends Component {
   static propTypes = {
     initialize: PropTypes.func.isRequired,
     save: PropTypes.func.isRequired,
-    user: PropTypes.object
+    user: PropTypes.object,
+    saveError: PropTypes.bool,
+    pushState: PropTypes.func.isRequired,
   }
 
   handleSubmit = (data) => {
     // window.alert('Data submitted! ' + JSON.stringify(data));
     this.props.save(data);
-    this.props.initialize('post', {});
-    window.location.href = '/topics';
+    if (!this.props.saveError) {
+      this.props.initialize('post', {});
+      this.props.pushState(null, '/topics');
+    }
   }
 
   render() {
