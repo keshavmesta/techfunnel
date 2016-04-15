@@ -27,15 +27,21 @@ export default class Login extends Component {
     const that = this;
 
     function loginHandler(err, res) {
-      if (res.body.success) {
-        const now = new Date();
-        const exp = new Date(now.getTime() + 900 * 1000);
-        cookie.save('username', username.value, { path: '/', expires: exp });
-        that.props.login(username.value, res.body.token);
-      } else {
+      if (err) {
         password.value = '';
         username.value = '';
-        that.setState({errorMessage: res.body.message});
+        that.setState({errorMessage: 'Network error! Make sure you are connected to Sapient Network'});
+      } else if (res.status === 200 && res.statusText === 'OK') {
+        if (res.body.success) {
+          const now = new Date();
+          const exp = new Date(now.getTime() + 900 * 1000);
+          cookie.save('username', username.value, { path: '/', expires: exp });
+          that.props.login(username.value, res.body.token);
+        } else {
+          password.value = '';
+          username.value = '';
+          that.setState({errorMessage: res.body.message});
+        }
       }
     }
 
