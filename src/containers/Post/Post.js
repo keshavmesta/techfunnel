@@ -33,12 +33,18 @@ export default class Post extends Component {
   }
 
   render() {
-    const {user} = this.props;
+    const {user, saveError} = this.props;
 
     return (
       <div className="container">
         <h1>Post a Topic</h1>
         <Helmet title="Post a Topic"/>
+        {saveError &&
+        <div className="alert alert-danger" role="alert">
+          <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+          {' '}
+          {saveError}
+        </div>}
         {user && <TopicForm onSubmit={this.handleSubmit}/>}
         {!user && <p>You need to <Link to="/login">login</Link> to post a topic!</p>}
       </div>
