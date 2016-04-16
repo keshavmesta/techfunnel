@@ -39,7 +39,7 @@ export default function reducer(state = initialState, action = {}) {
     case SAVE:
       return state; // 'saving' flag handled by redux-form
     case SAVE_SUCCESS:
-      const data = state.data;
+      const data = {...state.data};
       data.topics.push(action.result);
       return {
         ...state,
