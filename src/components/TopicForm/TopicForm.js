@@ -26,7 +26,7 @@ function asyncValidate(data) {
 
 @reduxForm({
   form: 'post',
-  fields: ['title', 'description', 'speakerName', 'speakerId', 'speakerEmail', 'speakerMobile', 'dateScheduled', 'event', 'location', 'domain', 'comments', 'tags'],
+  fields: ['title', 'description', 'speakerMobile', 'dateScheduled', 'event', 'location', 'domain', 'tags'],
   validate: formValidation,
   asyncValidate,
   asyncBlurFields: ['email']
@@ -43,7 +43,7 @@ class TopicForm extends Component {
   render() {
     const {
       asyncValidating,
-      fields: {title, description, speakerName, speakerId, speakerEmail, speakerMobile, dateScheduled, event, location, domain, comments, tags},
+      fields: {title, description, speakerMobile, dateScheduled, event, location, domain, tags},
       handleSubmit,
       resetForm
     } = this.props;
@@ -70,7 +70,6 @@ class TopicForm extends Component {
       <div>
       <form className="form-horizontal" onSubmit={handleSubmit}>
 
-      <p className={styles['form-sub-header']}>Where do you wanna present it?</p>
       <div className={'form-group' + (event.error && event.touched ? ' has-error' : '')}>
       <label className="col-sm-2">Event</label>
       <div className="col-sm-8">
@@ -93,7 +92,6 @@ class TopicForm extends Component {
       {location.error && location.touched && <div className="text-danger">{location.error}</div>}
       </div>
       </div>
-      <p className={styles['form-sub-header']}>Topic Details:</p>
       {renderInput(title, 'Title')}
       <div className={'form-group' + (domain.error && domain.touched ? ' has-error' : '')}>
       <label htmlFor="domain" className="col-sm-2">Domain</label>
@@ -112,7 +110,6 @@ class TopicForm extends Component {
       </div>
       {renderTextarea(description, 'Description', 10)}
       {renderInput(tags, 'Tags')}
-      <p className={styles['form-sub-header']}>We are already excited! When you shall be ready?</p>
       <div className="form-group">
       <label htmlFor="dateScheduled" className="col-sm-2">Preferred Date</label>
       <div className="col-sm-8">
@@ -120,13 +117,7 @@ class TopicForm extends Component {
       </div>
       </div>
 
-      <p className={styles['form-sub-header']}>Speaker Details:</p>
-      {renderInput(speakerName, 'Full Name')}
-      {renderInput(speakerId, 'Oracle ID')}
-      {renderInput(speakerEmail, 'Email', true)}
-      {renderInput(speakerMobile, 'Mobile', true)}
-      {renderTextarea(comments, 'Comments', 3)}
-
+      {renderInput(speakerMobile, 'Mobile #', true)}
 
       <div className="form-group">
       <div className="col-sm-offset-2 col-sm-10">
