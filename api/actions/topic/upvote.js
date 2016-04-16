@@ -5,11 +5,9 @@ import mongoose from 'mongoose';
 export default function upvote(req) {
 
   return new Promise((resolve, reject) => {
-    if(req.session.user === undefined) {
-      reject('You need to be logged in to upvote topics');
-    } else {
+    if(req.session.user) {
       let topic_id = req.body._id;
-      let user = req.session.user.name;
+      let user = req.session.user.username;
 
       // Check if user has already voted for the topic
       UpvoteModel.find({user: user, topicId: topic_id}).then(function(result){
@@ -22,7 +20,7 @@ export default function upvote(req) {
                 let upvotedTopics = [];
 
                 if(req.session.user) {
-                  UpvoteModel.find({user: req.session.user.name}, {topicId: 1}).then(function(result) {
+                  UpvoteModel.find({user: user}, {topicId: 1}).then(function(result) {
                     if(result && result.length) {
                       result.map((topic) => upvotedTopics.push(topic.topicId));
                       resolve({topics: topics, upvotedTopics: upvotedTopics});
@@ -48,6 +46,8 @@ export default function upvote(req) {
       }, function(err){
         reject(err);
       });
+    } else {
+      reject('You need to be logged in to upvote topics');
     }
   });
 }
