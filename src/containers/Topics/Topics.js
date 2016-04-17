@@ -6,6 +6,7 @@ import * as topicActions from 'redux/modules/topics';
 import {isLoaded, load as loadTopics} from 'redux/modules/topics';
 import connectData from 'helpers/connectData';
 import { pushState } from 'redux-router';
+import { createHistory } from 'history';
 
 function fetchDataDeferred(getState, dispatch) {
   if (!isLoaded(getState())) {
@@ -86,9 +87,11 @@ export default class Topics extends Component {
       }
       return () => this.props.pushState(null, '/login');
     };
+    const param1 = this.props.params.param1;
     const eventName = this.props.params.event;
-    const locationName = this.props.params.location;
     const {topics, error, loading, load, upvotedTopics} = this.props;
+    const history = createHistory();
+
     let refreshClassName = 'fa fa-refresh';
     if (loading) {
       refreshClassName += ' fa-spin';
@@ -106,7 +109,7 @@ export default class Topics extends Component {
           {' '}
           {error}
         </div>}
-        {this.props.params.event ? <div><Link to={`/topics/${this.props.params.location}`}>Go Back</Link></div> : <div><div>Filter By: <Link to={`/topics/${this.props.params.location}/XT Summit`}>XT Summit</Link> | <Link to={`/topics/${this.props.params.location}/Tech Friday`}>Tech Friday</Link></div></div>}
+        {(param1 || eventName) && <div><button className="btn btn-primary" onClick={() => history.goBack()}><i className="fa fa-reply"></i> Go Back</button></div>}
         {topics && topics.length &&
         <table className="table">
           <thead>
@@ -123,7 +126,7 @@ export default class Topics extends Component {
           <tbody>
           {
             topics.map((topic) =>
-              (locationName ? locationName === topic.location : true) && (eventName ? eventName === topic.event : true) ?
+              (param1 ? (param1 === topic.location || param1 === topic.event) : true) && (eventName ? eventName === topic.event : true) ?
               <tr key={topic._id}>
                 <td className={styles.title}><Link to={`/topic/${topic.location}/${topic.event}/${topic._id}`}>{topic.title}</Link></td>
                 <td className={styles.postedBy}>{topic.domain}</td>

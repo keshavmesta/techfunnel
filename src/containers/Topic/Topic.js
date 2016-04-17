@@ -5,6 +5,7 @@ import {Link} from 'react-router';
 import * as topicActions from 'redux/modules/topics';
 import {isLoaded, load as loadTopics} from 'redux/modules/topics';
 import connectData from 'helpers/connectData';
+import { createHistory } from 'history';
 
 function fetchDataDeferred(getState, dispatch) {
   if (!isLoaded(getState())) {
@@ -32,20 +33,20 @@ export default class Topic extends Component {
     };
     const {topics} = this.props;
     const styles = require('./Topic.scss');
+    const param1 = this.props.params.param1;
     const eventName = this.props.params.event;
-    const locationName = this.props.params.location;
     let currentIndex;
     let prevIndex;
     let nextIndex;
     const selectionTopics = topics.map((topic) => {
-      if (topic.location === locationName && topic.event === eventName) {
+      if (topic.location === param1 && topic.event === eventName) {
         return topic._id;
       }
     });
     const thisSelectionTopics = selectionTopics.filter((topicId) => { return topicId !== undefined; });
+    const history = createHistory();
     return (
       <div className={styles.topic + ' container'}>
-        <div className={styles.goBackCta}><Link to={`/topics/${this.props.params.location}/${this.props.params.event}`}>Go Back</Link></div>
         {topics && topics.length &&
           topics.map((topic) =>
           topic._id === this.props.params.topicid ?
@@ -61,6 +62,11 @@ export default class Topic extends Component {
               <p className={styles.upVotes}>
                 <button className="btn btn-skyblue" onClick={handleUpvote(topic)}>
                   <i className="fa fa-thumbs-o-up"/> {topic.upVotes}
+                </button>
+              </p>
+              <p className={styles.upVotes}>
+                <button className="btn btn-skyblue" onClick={() => history.goBack()}>
+                  <i className="fa fa-reply"></i> Go Back
                 </button>
               </p>
               <p>
