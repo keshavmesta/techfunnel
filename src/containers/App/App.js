@@ -68,7 +68,7 @@ export default class App extends Component {
             <Navbar.Brand>
               <IndexLink to="/" activeStyle={{color: '#e56246'}}>
                 <div className={styles.brand}/>
-                <span>Home</span>
+                <span>{config.app.title}</span>
               </IndexLink>
             </Navbar.Brand>
             <Navbar.Toggle/>
@@ -110,6 +110,9 @@ export default class App extends Component {
 
         <footer className="well text-center">
           <p>© 2016 Sapient Consulting Ltd</p>
+          <p className={styles.humility}>
+            Created and maintained by <a href="mailto:techfridaycommittee@sapient.com">Tech Friday Committee</a>, XT Bangalore
+          </p>
         </footer>
       </div>
     );

@@ -1,7 +1,9 @@
+@import "../../theme/variables.scss";
+
 .app {
   .brand {
     position: absolute;
-    $size: 45px;
+    $size: 40px;
     top: 5px;
     left: 5px;
     display: inline-block;
@@ -19,4 +21,12 @@
 }
 .appContent {
   margin: 56px 0; // for fixed navbar
+}
+.humility {
+  color: $humility;
+  font-size: 12px;
+  font-style: italic;
+  a {
+    color: $humility;
+  }
 }

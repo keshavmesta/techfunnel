@@ -52,15 +52,11 @@ export default class Home extends Component {
           <h1>{config.app.title}</h1>
 
           <h2>{config.app.description}</h2>
-
-          <p className={styles.humility}>
-          Created and maintained by <a href="mailto:techfridaycommittee@sapient.com">Tech Friday Committee</a>.
-          </p>
           </div>
           </div>
+          <div><img src={xtBanner} alt="XT Banner"/></div>
           <section className={styles.homeMain}>
             <div className="container">
-              <div>XT Summit Banner</div>
               <div className={styles.hotTopicsContainer}>
                 <h2>Trending Topics</h2>
                 {
@@ -80,11 +76,10 @@ export default class Home extends Component {
               { Object.keys(myLocationArray).map(function outercb(location) {
                 return <div key={location}><Link to={`/topics/${location}`}>{location}</Link></div>;
               })
-            }<h2>Topics by events</h2>
-              { Object.keys(myLocationArray).map(function outercb(location) {
-                return Object.keys(myEventArray).map(function cb(event) {
-                  return <div key={event + location}><Link to={`/topics/${location}/${event}`}>{event + ' - ' + location}</Link></div>;
-                });
+              }
+              <h2>Topics by events</h2>
+              { Object.keys(myEventArray).map(function cb(event) {
+                return <div key={event}><Link to={`/topics/${event}`}>{event}</Link></div>;
               })
               }
             </div>
