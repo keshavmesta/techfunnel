@@ -9,6 +9,11 @@
  	font-family: $font-family-open-sans;
  }
 
+ img {
+   max-width: 100%;
+   height: auto;
+ }
+
 .navbar-brand {
   position: relative;
   font-size: 16px;
