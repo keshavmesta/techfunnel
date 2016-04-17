@@ -43,6 +43,8 @@ export default class Home extends Component {
       const sortedArray = upvotesArray.sort(function cb(firstNumber, secondNumber) {return secondNumber - firstNumber;});
       const topicsClone = topics.slice(0).reverse();
       const styles = require('./Home.scss');
+      // require the image both from client and server
+      const xtBanner = require('./home-banner.jpg');
 
       return (
         <div className={styles.home}>

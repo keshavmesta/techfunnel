@@ -6,6 +6,7 @@
   }
 }
 .masthead {
+  display: none; /* To Avoid two banners | For time being */
   background: #eeeeee;
   padding: 40px 20px;
   color: white;
@@ -41,14 +42,6 @@
   p {
     margin: 10px;
   }
-  .humility {
-    color: $humility;
-    font-size: 12px;
-    font-style: italic;
-    a {
-      color: $humility;
-    }
-  }
   .github {
     font-size: 1.5em;
   }
@@ -72,8 +65,11 @@
       margin-right: 0;
     }
 
-    h3 {
+    h4 {
       margin-top: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
   }
 }
