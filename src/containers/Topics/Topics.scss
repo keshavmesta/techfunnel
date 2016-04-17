@@ -37,3 +37,11 @@
     border: 1px solid #bbcadc;
   }
 }
+.filterByContainer {
+  a {
+    &:after {
+      display: inline-block;
+      content: "|"
+    }
+  }
+}

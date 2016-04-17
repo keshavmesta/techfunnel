@@ -52,7 +52,7 @@ export default (store) => {
       <Route path="post" component={Post}/>
       <Route path="topics" component={Topics}/>
       <Route path="topics/:param1" component={Topics}/>
-      <Route path="topics/:param1/:event/" component={Topic}/>
+      <Route path="topics/:param1/:event" component={Topics}/>
       <Route path="topic/:param1/:event/:topicid" component={Topic}/>
 
       { /* Catch all route */ }
