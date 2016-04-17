@@ -6,6 +6,7 @@ import connectData from 'helpers/connectData';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import * as topicActions from 'redux/modules/topics';
+import {Col} from 'react-bootstrap';
 
 function fetchDataDeferred(getState, dispatch) {
   if (!isLoaded(getState())) {
@@ -74,16 +75,24 @@ export default class Home extends Component {
                 })
                 }
               </div>
-              <h2>Topics by locations</h2>
-              { Object.keys(myLocationArray).map(function outercb(location) {
-                return <div key={location}><Link to={`/topics/${location}`}>{location}</Link></div>;
-              })
-              }
-              <h2>Topics by events</h2>
-              { Object.keys(myEventArray).map(function cb(event) {
-                return <div key={event}><Link to={`/topics/${event}`}>{event}</Link></div>;
-              })
-              }
+              <Col xs={12} sm={6} className={styles.topicsByLocationsContainer}>
+                <h2>Topics by locations</h2>
+                <ul>
+                  { Object.keys(myLocationArray).map(function outercb(location) {
+                    return <li key={location}><Link to={`/topics/${location}`}>{location} <i className="fa fa-external-link" aria-hidden="true"></i></Link></li>;
+                  })
+                  }
+                </ul>
+              </Col>
+              <Col xs={12} sm={6} className={styles.topicsByEventsContainer}>
+                <h2>Topics by events</h2>
+                <ul>
+                  { Object.keys(myEventArray).map(function cb(event) {
+                    return <li key={event}><Link to={`/topics/${event}`}>{event} <i className="fa fa-external-link" aria-hidden="true"></i></Link></li>;
+                  })
+                  }
+                </ul>
+              </Col>
             </div>
           </section>
         </div>

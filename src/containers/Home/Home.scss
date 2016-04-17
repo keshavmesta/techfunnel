@@ -73,3 +73,32 @@
     }
   }
 }
+
+.topicsByLocationsContainer, .topicsByEventsContainer {
+  ul {
+    list-style: none;
+    padding: 0;
+
+    &:after {
+      content: " ";
+      display: table;
+      clear: both;
+    }
+
+    li {
+      float: left;
+      clear: left;
+      margin-bottom: 10px;
+    }
+
+    a {
+      display: block;
+      padding: 10px;
+      background-color: #F1F1F1;
+
+      i {
+        padding-left: 10px;
+      }
+    }
+  }
+}
