@@ -6,7 +6,7 @@ import * as topicActions from 'redux/modules/topics';
 import {isLoaded, load as loadTopics} from 'redux/modules/topics';
 import connectData from 'helpers/connectData';
 import { pushState } from 'redux-router';
-import { createHistory } from 'history';
+import { createMemoryHistory } from 'history';
 
 function fetchDataDeferred(getState, dispatch) {
   if (!isLoaded(getState())) {
@@ -90,7 +90,7 @@ export default class Topics extends Component {
     const param1 = this.props.params.param1;
     const eventName = this.props.params.event;
     const {topics, error, loading, load, upvotedTopics} = this.props;
-    const history = createHistory();
+    const history = createMemoryHistory();
 
     // Temp solutions. These should be moved to redux store/db eventually
     const locationsArr = ['Bangalore', 'Gurgaon', 'Noida'];
@@ -113,9 +113,9 @@ export default class Topics extends Component {
           {' '}
           {error}
         </div>}
-        {!param1 && !eventName && <div className={styles.filterByContainer}>Filter By: {locationsArr.map((location) => <Link to={`/topics/${location}`}> {location} </Link>)} {eventsArr.map((event) => <Link to={`/topics/${event}`}> {event} </Link>)}</div>}
-        {param1 && eventsArr.indexOf(param1) >= 0 && !eventName && <div className={styles.filterByContainer}>Filter By: {locationsArr.map((location) => <Link to={`/topics/${location}/${param1}`}> {location} </Link>)}</div>}
-        {param1 && locationsArr.indexOf(param1) >= 0 && !eventName && <div className={styles.filterByContainer}>Filter By: {eventsArr.map((event) => <Link to={`/topics/${param1}/${event}`}> {event} </Link>)}</div>}
+        {!param1 && !eventName && <div className={styles.filterByContainer}>Filter By: {locationsArr.map((location) => <Link key={location} to={`/topics/${location}`}> {location} </Link>)} {eventsArr.map((event) => <Link key={event} to={`/topics/${event}`}> {event} </Link>)}</div>}
+        {param1 && eventsArr.indexOf(param1) >= 0 && !eventName && <div className={styles.filterByContainer}>Filter By: {locationsArr.map((location) => <Link key={location} to={`/topics/${location}/${param1}`}> {location} </Link>)}</div>}
+        {param1 && locationsArr.indexOf(param1) >= 0 && !eventName && <div className={styles.filterByContainer}>Filter By: {eventsArr.map((event) => <Link key={event} to={`/topics/${param1}/${event}`}> {event} </Link>)}</div>}
         {topics && topics.length &&
         <table className="table">
           <thead>
