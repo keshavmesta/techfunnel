@@ -14,7 +14,7 @@ module.exports = Object.assign({
   port: process.env.PORT,
   apiHost: process.env.APIHOST || 'localhost',
   apiPort: process.env.APIPORT,
-  useSeed: true,
+  useSeed: false,
   app: {
     title: 'Talk Funnel',
     description: 'Platform to share the Topics for Studio Events',
