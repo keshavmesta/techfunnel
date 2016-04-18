@@ -16,7 +16,8 @@ export default function seed() {
         "title":"Hybris First Approach.",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/6/2016 11:28"),
@@ -31,7 +32,8 @@ export default function seed() {
         "title":"Offline Apps with React",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/6/2016 17:53"),
@@ -46,7 +48,8 @@ export default function seed() {
         "title":"High performance HTML-based templating engine",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/7/2016 3:21"),
@@ -61,7 +64,8 @@ export default function seed() {
         "title":"Introduction to Meteor Framework (and a little beyond)",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/9/2016 8:56"),
@@ -76,7 +80,8 @@ export default function seed() {
         "title":"Augmented Reality - Next Generation Tool",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/11/2016 13:02"),
@@ -91,7 +96,8 @@ export default function seed() {
         "title":"Reactive Programming with RxJS",
         "comments":"NA",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/11/2016 15:24"),
@@ -106,7 +112,8 @@ export default function seed() {
         "title":"Style Guide Driven Development",
         "comments":"This topic will create a spark in the way designers, developers and stakeholders are thinking about the prototypes.",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/11/2016 18:05"),
@@ -121,7 +128,8 @@ export default function seed() {
         "title":"Writing Testable javascript",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/12/2016 8:27"),
@@ -136,7 +144,8 @@ export default function seed() {
         "title":"Go! ",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/12/2016 12:19"),
@@ -151,7 +160,8 @@ export default function seed() {
         "title":"Know Demandware",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/12/2016 12:26"),
@@ -166,7 +176,8 @@ export default function seed() {
         "title":"Unity VR- A Primer",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/12/2016 12:57"),
@@ -181,7 +192,8 @@ export default function seed() {
         "title":"Machine Learning in JavaScript",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/12/2016 14:55"),
@@ -196,7 +208,8 @@ export default function seed() {
         "title":"Assemble - Static site generator",
         "comments":"Adding Saravana Gopal (ID: sgopal) and Venkatachalam Subramani (ID : vsubr2) in the team",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/12/2016 15:51"),
@@ -211,7 +224,8 @@ export default function seed() {
         "title":"Gesture Recognition for Browsers",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/12/2016 17:29"),
@@ -226,7 +240,8 @@ export default function seed() {
         "title":"Game Development using three.js",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/12/2016 18:08"),
@@ -241,7 +256,8 @@ export default function seed() {
         "title":"Machine Learning for everyday experinces",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/12/2016 20:25"),
@@ -256,7 +272,8 @@ export default function seed() {
         "title":"Greensock : Animation of web made easy",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/12/2016 21:47"),
@@ -271,7 +288,8 @@ export default function seed() {
         "title":"Functional Reactive Programming in JavaScript (with RxJS)",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/13/2016 3:04"),
@@ -286,7 +304,8 @@ export default function seed() {
         "title":"Functional Reactive Programming",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/13/2016 3:08"),
@@ -301,7 +320,8 @@ export default function seed() {
         "title":"Cross browser creative testing automation",
         "comments":"I would need some mobile phone tablets to demonstrate this. May be exact requirement may vary for them based on my preparation.",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/13/2016 12:11"),
@@ -316,7 +336,8 @@ export default function seed() {
         "title":"WebGL",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/13/2016 14:18"),
@@ -331,7 +352,8 @@ export default function seed() {
         "title":"Project Houdini",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/13/2016 15:13"),
@@ -346,7 +368,8 @@ export default function seed() {
         "title":"Make the React from Angular",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/13/2016 18:58"),
@@ -361,7 +384,8 @@ export default function seed() {
         "title":"Is Critical Rendering Path Critical?",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/13/2016 22:47"),
@@ -376,7 +400,8 @@ export default function seed() {
         "title":"Generators and the Next Gen Framework",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/14/2016 11:37"),
@@ -391,7 +416,8 @@ export default function seed() {
         "title":"Create your own Alexa",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/14/2016 11:46"),
@@ -406,7 +432,8 @@ export default function seed() {
         "title":"Page tester - A UI Testing tool",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/14/2016 11:48"),
@@ -421,7 +448,8 @@ export default function seed() {
         "title":"Media in Modern web",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/14/2016 11:54"),
@@ -436,7 +464,8 @@ export default function seed() {
         "title":"Freedom of speech gone too far?",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/14/2016 12:14"),
@@ -451,7 +480,8 @@ export default function seed() {
         "title":"IOT",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/14/2016 13:44"),
@@ -466,7 +496,8 @@ export default function seed() {
         "title":"Future of E-commerce and Immersive Experiences",
         "comments":"Would love any suggestions.",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/14/2016 14:10"),
@@ -481,7 +512,8 @@ export default function seed() {
         "title":"Webpack and it's uses for development",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/14/2016 14:30"),
@@ -496,7 +528,8 @@ export default function seed() {
         "title":"Step-in to Full stack",
         "comments":"NO",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/14/2016 15:01"),
@@ -511,7 +544,8 @@ export default function seed() {
         "title":"Social Media- the what else part",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/14/2016 16:38"),
@@ -526,7 +560,8 @@ export default function seed() {
         "title":"Data Structures and Algorithms in JavaScript",
         "comments":"Code Snippets and Algorithms Statistics will be presented through a presentation. ",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/14/2016 20:01"),
@@ -541,7 +576,8 @@ export default function seed() {
         "title":"Data Visualization with D3.js",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/15/2016 9:19"),
@@ -556,7 +592,8 @@ export default function seed() {
         "title":"Machine Learning in JavaScript",
         "comments":"I do not have a PoC yet. This talk will be a detailed introduction on Machine Learning in JavaScript. I would try to get a PoC done, but considering the timeline, the chances are a little bleak. I shall try though! :)",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/15/2016 10:44"),
@@ -571,7 +608,8 @@ export default function seed() {
         "title":"Cloud hosted IoT app with mqtt and nodejs ",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/15/2016 14:34"),
@@ -586,7 +624,8 @@ export default function seed() {
         "title":"iCart",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },
       {
         "datePosted":new Date("4/15/2016 16:22"),
@@ -601,7 +640,8 @@ export default function seed() {
         "title":"Build your story",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },{
         "datePosted":new Date("4/13/2016  4:42"),
         "dateScheduled":"4-May-2016",
@@ -615,7 +655,8 @@ export default function seed() {
         "title":"Materialize with Material Design",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       },{
         "datePosted":new Date("4/12/2016  5:54"),
         "dateScheduled":"4-May-2016",
@@ -629,7 +670,8 @@ export default function seed() {
         "title":"Sapient : My First Company",
         "comments":"",
         "event": "XT Summit",
-        "status": 1
+        "status": 1,
+        "upVotes": 0
       }
     ])
   });

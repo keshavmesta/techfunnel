@@ -32,7 +32,7 @@ export default class Home extends Component {
       const myEventArray = {};
       const myLocationArray = {};
       const upvotesArray = [];
-      topics.map(function cb(topic) {
+      topics.map((topic) => {
         if (!myEventArray.hasOwnProperty(topic.event)) {
           myEventArray[topic.event] = true;
         }
@@ -41,9 +41,14 @@ export default class Home extends Component {
         }
         upvotesArray.push(topic.upVotes);
       });
-      const sortedArray = upvotesArray.sort(function cb(firstNumber, secondNumber) {return secondNumber - firstNumber;});
+      const sortedArray = upvotesArray.sort((firstNumber, secondNumber) => {return secondNumber - firstNumber;});
       const topicsClone = topics.slice(0).reverse();
       const styles = require('./Home.scss');
+      let totalSorted = 0;
+      const upSorted = () => {
+        totalSorted++;
+        return true;
+      };
       // require the image both from client and server
       const xtBanner = require('./home-banner.jpg');
 
@@ -63,14 +68,16 @@ export default class Home extends Component {
               <div className={styles.hotTopicsContainer}>
                 <h2>Trending Topics</h2>
                 {
-                  topicsClone.splice(0, 3).map(function cbi(topic) {
+                  topicsClone.splice(0, 3).map((topic) => {
                     return (<div key={topic._id} className={styles.hotTopicGrid}><h4><Link to={`/topic/${topic.location}/${topic.event}/${topic._id}`}>{topic.title}</Link></h4><p>{topic.description.length > 175 ? (topic.description.substring(0, 175) + '...') : (topic.description)}</p></div>);
                   })
                 }
                 {
-                sortedArray.splice(0, 3).map(function cb(upVote) {
-                  return topics.map(function cbinner(topic) {
-                    return (topic.upVotes === upVote ? <div key={topic._id} className={styles.hotTopicGrid}><h4><Link to={`/topic/${topic.location}/${topic.event}/${topic._id}`}>{topic.title}</Link></h4><p>{topic.description.length > 175 ? (topic.description.substring(0, 175) + '...') : (topic.description)}</p></div> : null);
+                sortedArray.splice(0, 3).map((upVote) => {
+                  return topics.map((topic) => {
+                    const shouldAdd = topic.upVotes === upVote && totalSorted < 3 ? upSorted() : false;
+                    const returnData = shouldAdd ? <div key={topic._id} className={styles.hotTopicGrid}><h4><Link to={`/topic/${topic.location}/${topic.event}/${topic._id}`}>{topic.title}</Link></h4><p>{topic.description.length > 175 ? (topic.description.substring(0, 175) + '...') : (topic.description)}</p></div> : null;
+                    return returnData;
                   });
                 })
                 }
@@ -78,7 +85,7 @@ export default class Home extends Component {
               <Col xs={12} sm={6} className={styles.topicsByLocationsContainer}>
                 <h2>Topics by locations</h2>
                 <ul>
-                  { Object.keys(myLocationArray).map(function outercb(location) {
+                  { Object.keys(myLocationArray).map((location) => {
                     return <li key={location}><Link to={`/topics/${location}`}>{location} <i className="fa fa-external-link" aria-hidden="true"></i></Link></li>;
                   })
                   }
@@ -87,7 +94,7 @@ export default class Home extends Component {
               <Col xs={12} sm={6} className={styles.topicsByEventsContainer}>
                 <h2>Topics by events</h2>
                 <ul>
-                  { Object.keys(myEventArray).map(function cb(event) {
+                  { Object.keys(myEventArray).map((event) => {
                     return <li key={event}><Link to={`/topics/${event}`}>{event} <i className="fa fa-external-link" aria-hidden="true"></i></Link></li>;
                   })
                   }
