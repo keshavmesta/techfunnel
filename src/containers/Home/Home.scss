@@ -71,6 +71,10 @@
       white-space: nowrap;
       text-overflow: ellipsis;
     }
+
+    p {
+      min-height: 95px;
+    }
   }
 }
 

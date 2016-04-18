@@ -128,9 +128,9 @@ export default class Topics extends Component {
             <th className={styles.title}>Title</th>
             <th className={styles.postedBy}>Domain</th>
             <th className={styles.event}><a href="" onClick={this.sortTopicsByEvent}>Event<span style={{marginLeft: '5px'}} className="fa fa-sort"></span></a></th>
-            <th className={styles.scheduledOn}>Scheduled On</th>
             <th className={styles.location}><a href="" onClick={this.sortTopicsByLocation}>Location<span style={{marginLeft: '5px'}} className="fa fa-sort"></span></a></th>
             <th className={styles.postedBy}>Posted By</th>
+            <th className={styles.scheduledOn}>Posted On</th>
             <th className={styles.upVotes}> Upvotes</th>
           </tr>
           </thead>
@@ -142,9 +142,9 @@ export default class Topics extends Component {
                 <td className={styles.title}><Link to={`/topic/${topic.location}/${topic.event}/${topic._id}`}>{topic.title}</Link></td>
                 <td className={styles.postedBy}>{topic.domain}</td>
                 <td className={styles.event}>{topic.event}</td>
-                <td className={styles.scheduledOn}>{topic.dateScheduled}</td>
                 <td className={styles.location}>{topic.location}</td>
                 <td className={styles.postedBy}>{topic.speakerName}</td>
+                <td className={styles.scheduledOn}>{new Date(topic.datePosted).getDate() + '-' + (new Date(topic.datePosted).getMonth() + 1) + '-' + new Date(topic.datePosted).getFullYear()}</td>
                 <td className={styles.upVotes}>
                   {upvotedTopics && upvotedTopics.indexOf(topic._id) >= 0 &&
                   <button className="btn btn-disabled" title="You have already upvoted this topic">
