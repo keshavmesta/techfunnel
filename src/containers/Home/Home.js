@@ -69,14 +69,14 @@ export default class Home extends Component {
                 <h2>Trending Topics</h2>
                 {
                   topicsClone.splice(0, 3).map((topic) => {
-                    return (<div key={topic._id} className={styles.hotTopicGrid}><h4><Link to={`/topic/${topic.location}/${topic.event}/${topic._id}`}>{topic.title}</Link></h4><p>{topic.description.length > 175 ? (topic.description.substring(0, 175) + '...') : (topic.description)}</p></div>);
+                    return (<div key={topic._id} className={styles.hotTopicGrid}><h4><Link to={`/topics/${topic.location}/${topic.event}/${topic._id}`}>{topic.title}</Link></h4><p>{topic.description.length > 175 ? (topic.description.substring(0, 175) + '...') : (topic.description)}</p></div>);
                   })
                 }
                 {
                 sortedArray.splice(0, 3).map((upVote) => {
                   return topics.map((topic) => {
                     const shouldAdd = topic.upVotes === upVote && totalSorted < 3 ? upSorted() : false;
-                    const returnData = shouldAdd ? <div key={topic._id} className={styles.hotTopicGrid}><h4><Link to={`/topic/${topic.location}/${topic.event}/${topic._id}`}>{topic.title}</Link></h4><p>{topic.description.length > 175 ? (topic.description.substring(0, 175) + '...') : (topic.description)}</p></div> : null;
+                    const returnData = shouldAdd ? <div key={topic._id} className={styles.hotTopicGrid}><h4><Link to={`/topics/${topic.location}/${topic.event}/${topic._id}`}>{topic.title}</Link></h4><p>{topic.description.length > 175 ? (topic.description.substring(0, 175) + '...') : (topic.description)}</p></div> : null;
                     return returnData;
                   });
                 })

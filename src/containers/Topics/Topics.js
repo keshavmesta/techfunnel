@@ -89,6 +89,8 @@ export default class Topics extends Component {
     };
     const param1 = this.props.params.param1;
     const eventName = this.props.params.event;
+    const topicid = this.props.params.topicid;
+
     const {topics, error, loading, load, upvotedTopics} = this.props;
     let history;
     if (typeof(window) !== 'undefined') {
@@ -112,7 +114,7 @@ export default class Topics extends Component {
           Topics {(param1 || eventName) && <button className="btn btn-primary" onClick={() => history.goBack()}><i className="fa fa-reply"></i> Go Back</button>}
         </h1>
         <Helmet title="Topics"/>
-        {error &&
+        {error && !!topicid &&
         <div className="alert alert-danger" role="alert">
           <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
           {' '}
@@ -139,7 +141,7 @@ export default class Topics extends Component {
             topics.map((topic) =>
               (param1 ? (param1 === topic.location || param1 === topic.event) : true) && (eventName ? eventName === topic.event : true) ?
               <tr key={topic._id}>
-                <td className={styles.title}><Link to={`/topic/${topic.location}/${topic.event}/${topic._id}`}>{topic.title}</Link></td>
+                <td className={styles.title}><Link to={`/topics/${topic.location}/${topic.event}/${topic._id}`}>{topic.title}</Link></td>
                 <td className={styles.postedBy}>{topic.domain}</td>
                 <td className={styles.event}>{topic.event}</td>
                 <td className={styles.location}>{topic.location}</td>
