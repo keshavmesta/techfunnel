@@ -5,6 +5,7 @@ import {Link} from 'react-router';
 import * as topicActions from 'redux/modules/topics';
 import {isLoaded, load as loadTopics} from 'redux/modules/topics';
 import connectData from 'helpers/connectData';
+import { pushState } from 'redux-router';
 import { createHistory, createMemoryHistory } from 'history';
 
 function fetchDataDeferred(getState, dispatch) {
@@ -17,26 +18,36 @@ function fetchDataDeferred(getState, dispatch) {
 @connect(
   state => ({
     topics: state.topics.data.topics,
-    upvotedTopics: state.topics.data.upvotedTopics
+    upvotedTopics: state.topics.data.upvotedTopics,
+    error: state.topics.error,
+    user: state.auth.user
   }),
-  {...topicActions })
+  {...topicActions, pushState })
 export default class Topic extends Component {
   static propTypes = {
     topics: PropTypes.array,
     upvotedTopics: PropTypes.array,
     params: PropTypes.object,
-    saveUpvote: PropTypes.func.isRequired
+    saveUpvote: PropTypes.func.isRequired,
+    error: PropTypes.string,
+    user: PropTypes.object,
+    pushState: PropTypes.func.isRequired
   }
 
   render() {
     const handleUpvote = (topic) => {
-      const {saveUpvote} = this.props;
-      return () => saveUpvote(topic);
+      const {saveUpvote, user} = this.props;
+      if (user) {
+        return () => saveUpvote(topic);
+      }
+      return () => this.props.pushState(null, '/login');
     };
-    const {topics, upvotedTopics} = this.props;
+    const {topics, upvotedTopics, error} = this.props;
     const styles = require('./Topic.scss');
     const param1 = this.props.params.param1;
     const eventName = this.props.params.event;
+    const topicid = this.props.params.topicid;
+
     let currentIndex;
     let prevIndex;
     let nextIndex;
@@ -52,17 +63,24 @@ export default class Topic extends Component {
     } else {
       history = createMemoryHistory();
     }
+
     return (
       <div className={styles.topic + ' container'}>
         {topics && topics.length &&
           topics.map((topic) =>
-          topic._id === this.props.params.topicid ?
+          topic._id === topicid ?
           <div key={topic._id}>
               <span style={{display: 'none'}}> { currentIndex = thisSelectionTopics.indexOf(topic._id)}
                { prevIndex = currentIndex === 0 ? thisSelectionTopics.length - 1 : currentIndex - 1}
                { nextIndex = currentIndex === thisSelectionTopics.length - 1 ? 0 : currentIndex + 1}</span>
               <h1>{topic.title}</h1>
               <Helmet title={topic.title}/>
+              {error && topicid &&
+              <div className="alert alert-danger" role="alert">
+                <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                {' '}
+                {error}
+              </div>}
               <p className={styles.otherDetails}>by <a href={'mailto:' + topic.speakerEmail}>{topic.speakerName}</a> on {topic.dateScheduled} in {topic.event}</p>
               <p className={styles.description}>{topic.description}</p>
               <p className={styles.datePosted}>Posted on {new Date(topic.datePosted).getFullYear() + '-' + (new Date(topic.datePosted).getMonth() + 1) + '-' + new Date(topic.datePosted).getDate()}</p>
