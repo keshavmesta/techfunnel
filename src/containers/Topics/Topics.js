@@ -6,7 +6,7 @@ import * as topicActions from 'redux/modules/topics';
 import {isLoaded, load as loadTopics} from 'redux/modules/topics';
 import connectData from 'helpers/connectData';
 import { pushState } from 'redux-router';
-import { createMemoryHistory } from 'history';
+import { createHistory, createMemoryHistory } from 'history';
 
 function fetchDataDeferred(getState, dispatch) {
   if (!isLoaded(getState())) {
@@ -90,7 +90,12 @@ export default class Topics extends Component {
     const param1 = this.props.params.param1;
     const eventName = this.props.params.event;
     const {topics, error, loading, load, upvotedTopics} = this.props;
-    const history = createMemoryHistory();
+    let history;
+    if (typeof(window) !== 'undefined') {
+      history = createHistory();
+    } else {
+      history = createMemoryHistory();
+    }
 
     // Temp solutions. These should be moved to redux store/db eventually
     const locationsArr = ['Bangalore', 'Gurgaon', 'Noida'];

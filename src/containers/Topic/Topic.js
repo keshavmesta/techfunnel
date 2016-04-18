@@ -5,7 +5,7 @@ import {Link} from 'react-router';
 import * as topicActions from 'redux/modules/topics';
 import {isLoaded, load as loadTopics} from 'redux/modules/topics';
 import connectData from 'helpers/connectData';
-import { createMemoryHistory } from 'history';
+import { createHistory, createMemoryHistory } from 'history';
 
 function fetchDataDeferred(getState, dispatch) {
   if (!isLoaded(getState())) {
@@ -44,7 +44,12 @@ export default class Topic extends Component {
       }
     });
     const thisSelectionTopics = selectionTopics.filter((topicId) => { return topicId !== undefined; });
-    const history = createMemoryHistory();
+    let history;
+    if (typeof(window) !== 'undefined') {
+      history = createHistory();
+    } else {
+      history = createMemoryHistory();
+    }
     return (
       <div className={styles.topic + ' container'}>
         {topics && topics.length &&
