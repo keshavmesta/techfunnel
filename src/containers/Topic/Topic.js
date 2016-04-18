@@ -66,7 +66,7 @@ export default class Topic extends Component {
               <p className={styles.datePosted}>Posted on {new Date(topic.datePosted).getFullYear() + '-' + (new Date(topic.datePosted).getMonth() + 1) + '-' + new Date(topic.datePosted).getDate()}</p>
               <p className={styles.upVotes}>
                 <button className="btn btn-skyblue" onClick={handleUpvote(topic)}>
-                  <i className="fa fa-thumbs-o-up"/> {topic.upVotes}
+                  <i className="fa fa-thumbs-o-up"/> {topic.upVotes > 0 && topic.upVotes}
                 </button>
               </p>
               <p className={styles.upVotes}>

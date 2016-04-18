@@ -148,15 +148,15 @@ export default class Topics extends Component {
                 <td className={styles.upVotes}>
                   {upvotedTopics && upvotedTopics.indexOf(topic._id) >= 0 &&
                   <button className="btn btn-disabled" title="You have already upvoted this topic">
-                    <i className="fa fa-thumbs-up"/> {topic.upVotes}
+                    <i className="fa fa-thumbs-up"/> {topic.upVotes > 0 && topic.upVotes}
                   </button>}
                   {upvotedTopics && upvotedTopics.indexOf(topic._id) === -1 &&
                   <button className="btn btn-skyblue" onClick={handleUpvote(topic)}>
-                    <i className="fa fa-thumbs-o-up"/> {topic.upVotes}
+                    <i className="fa fa-thumbs-o-up"/> {topic.upVotes > 0 && topic.upVotes}
                   </button>}
                   {!upvotedTopics &&
                   <button className="btn btn-skyblue" onClick={handleUpvote(topic)}>
-                    <i className="fa fa-thumbs-o-up"/> {topic.upVotes}
+                    <i className="fa fa-thumbs-o-up"/> {topic.upVotes > 0 && topic.upVotes}
                   </button>}
                 </td>
               </tr> : null)
