@@ -4,6 +4,7 @@ import Helmet from 'react-helmet';
 import * as authActions from 'redux/modules/auth';
 import superagent from 'superagent';
 import cookie from 'react-cookie';
+import { createHistory, createMemoryHistory } from 'history';
 
 @connect(
   state => ({user: state.auth.user}),
@@ -55,6 +56,12 @@ export default class Login extends Component {
   render() {
     const {user, logout} = this.props;
     const styles = require('./Login.scss');
+    let history;
+    if (typeof(window) !== 'undefined') {
+      history = createHistory();
+    } else {
+      history = createMemoryHistory();
+    }
     return (
       <div className={styles.loginPage + ' container'}>
         <Helmet title="Login"/>
@@ -69,7 +76,11 @@ export default class Login extends Component {
               <input type="password" ref="password" placeholder="Password" className="form-control"/>
             </div>
             <div className="form-group">
-              <button className="btn btn-primary" onClick={this.handleSubmit}><i className="fa fa-sign-in"/>{' '}Log In
+              <button className="btn btn-primary" onClick={this.handleSubmit}>
+                <i className="fa fa-sign-in"/>{' '}Log In
+              </button>
+              <button className="btn btn-primary" onClick={() => history.goBack()}>
+                <i className="fa fa-reply"></i> Go Back
               </button>
             </div>
           </form>
