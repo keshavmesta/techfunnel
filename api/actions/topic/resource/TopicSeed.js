@@ -28,7 +28,7 @@ export default function seed() {
         "speakerMobile":7795251713,
         "location":"Bangalore",
         "domain":"PWA",
-        "description":"What else should happen when we don't have Internet connectivity?",
+        "description":"What else should happen when we don't have Internet connectivity? How can we use modern web capabilities to deliver an app-like user experience but still work good in older browsers? A progressive app can look and behave just like a native mobile app but it's still a web app, so you don't have to deploy it through the app stores. Our aim is to make our web app just as good as native. How about even better than native? :)",
         "title":"Offline Apps with React",
         "comments":"",
         "event": "XT Summit",
