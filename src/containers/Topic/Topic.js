@@ -16,12 +16,14 @@ function fetchDataDeferred(getState, dispatch) {
 @connectData(null, fetchDataDeferred)
 @connect(
   state => ({
-    topics: state.topics.data.topics
+    topics: state.topics.data.topics,
+    upvotedTopics: state.topics.data.upvotedTopics
   }),
   {...topicActions })
 export default class Topic extends Component {
   static propTypes = {
     topics: PropTypes.array,
+    upvotedTopics: PropTypes.array,
     params: PropTypes.object,
     saveUpvote: PropTypes.func.isRequired
   }
@@ -31,7 +33,7 @@ export default class Topic extends Component {
       const {saveUpvote} = this.props;
       return () => saveUpvote(topic);
     };
-    const {topics} = this.props;
+    const {topics, upvotedTopics} = this.props;
     const styles = require('./Topic.scss');
     const param1 = this.props.params.param1;
     const eventName = this.props.params.event;
@@ -65,9 +67,18 @@ export default class Topic extends Component {
               <p className={styles.description}>{topic.description}</p>
               <p className={styles.datePosted}>Posted on {new Date(topic.datePosted).getFullYear() + '-' + (new Date(topic.datePosted).getMonth() + 1) + '-' + new Date(topic.datePosted).getDate()}</p>
               <p className={styles.upVotes}>
+                {upvotedTopics && upvotedTopics.indexOf(topic._id) >= 0 &&
+                <button className="btn btn-disabled" title="You have already upvoted this topic">
+                  <i className="fa fa-thumbs-up"/> {topic.upVotes > 0 && topic.upVotes}
+                </button>}
+                {upvotedTopics && upvotedTopics.indexOf(topic._id) === -1 &&
                 <button className="btn btn-skyblue" onClick={handleUpvote(topic)}>
-                  <i className="fa fa-thumbs-o-up"/> {topic.upVotes > 0 && topic.upVotes}
-                </button>
+                  <i className="fa fa-thumbs-o-up"/>{topic.upVotes > 0 && topic.upVotes}
+                </button>}
+                {!upvotedTopics &&
+                <button className="btn btn-skyblue" onClick={handleUpvote(topic)}>
+                  <i className="fa fa-thumbs-o-up"/>{topic.upVotes > 0 && topic.upVotes}
+                </button>}
               </p>
               <p className={styles.upVotes}>
                 <button className="btn btn-skyblue" onClick={() => history.goBack()}>
