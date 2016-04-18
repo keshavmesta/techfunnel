@@ -104,8 +104,8 @@ export default class Topic extends Component {
                 </button>
               </p>
               <p>
-                <Link to={`/topic/${topic.location}/${topic.event}/${thisSelectionTopics[prevIndex]}`} className={styles.previous}><i className="fa fa-chevron-left"></i></Link>
-                <Link to={`/topic/${topic.location}/${topic.event}/${thisSelectionTopics[nextIndex]}`} className={styles.next}><i className="fa fa-chevron-right"></i></Link>
+                <Link to={`/topics/${topic.location}/${topic.event}/${thisSelectionTopics[prevIndex]}`} className={styles.previous}><i className="fa fa-chevron-left"></i></Link>
+                <Link to={`/topics/${topic.location}/${topic.event}/${thisSelectionTopics[nextIndex]}`} className={styles.next}><i className="fa fa-chevron-right"></i></Link>
               </p>
             </div> : null)}
       </div>
